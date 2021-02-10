@@ -18,7 +18,7 @@ public class MyServer {
     public MyServer(int port) throws IOException, ClassNotFoundException, SQLException {
         serverSocket = new ServerSocket(port);
         baseAuthService = new BaseAuthService();
-        baseAuthService.startAuthentication();
+        baseAuthService.startAuthenticationService();
     }
 
 
@@ -36,7 +36,7 @@ public class MyServer {
             e.printStackTrace();
         } finally {
             if (baseAuthService != null) {
-                baseAuthService.endAuthentication();
+                baseAuthService.endAuthenticationService();
             }
             System.out.println("Сервер остановлен");
         }

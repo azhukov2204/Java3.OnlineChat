@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientHandler {
     private final MyServer myServer;
@@ -43,7 +44,7 @@ public class ClientHandler {
             try {
                 authenticationAndSubscribe();
                 startReceiver();
-            } catch (IOException e) {
+            } catch (IOException|SQLException e) {
                 e.printStackTrace();
             } finally {
                 try {
@@ -56,9 +57,9 @@ public class ClientHandler {
         }).start();
     }
 
-    private void authenticationAndSubscribe() throws IOException {
+    private void authenticationAndSubscribe() throws IOException, SQLException {
         String message;
-        System.out.printf("Устанавливаем тайм-аут сокета %d мс", SOCKET_TIMEOUT_MS);
+        System.out.printf("Устанавливаем тайм-аут сокета %d мс%n", SOCKET_TIMEOUT_MS);
         clientSocket.setSoTimeout(SOCKET_TIMEOUT_MS);
 
         boolean isAuthenticationSuccessful = false;
@@ -76,7 +77,7 @@ public class ClientHandler {
         clientSocket.setSoTimeout(0);   //после прохождения аутентификации снимаем ограничение по тайм-ауту
     }
 
-    private boolean isAuthenticationSuccessful(String message) throws IOException {
+    private boolean isAuthenticationSuccessful(String message) throws IOException, SQLException {
         String[] authMessageParts = message.split(";", 3);
         if (authMessageParts.length != 3) {
             out.writeUTF(AUTHERR_CMD_PREFIX + ";Неверная команда авторизации");
