@@ -5,7 +5,6 @@ import java.net.SocketException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -32,10 +31,6 @@ public class AuthWindowController {
 
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private Button enterButton;
-
 
     @FXML
     void doAuthentication(ActionEvent event) {

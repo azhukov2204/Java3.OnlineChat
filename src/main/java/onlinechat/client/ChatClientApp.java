@@ -22,7 +22,7 @@ public class ChatClientApp extends Application {
     private MainChatWindowController mainChatWindowController;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         this.primaryStage = primaryStage;
         network = new Network(); //todo сделать возможность подключения клиента по произвольным host:port
@@ -79,7 +79,7 @@ public class ChatClientApp extends Application {
         Parent nickNameChangeRoot = nickNameChangeLoader.load();
         nickNameChangeStage = new Stage();
         nickNameChangeStage.setTitle("Смена имени пользователя");
-        nickNameChangeStage.setScene(new Scene(nickNameChangeRoot));;
+        nickNameChangeStage.setScene(new Scene(nickNameChangeRoot));
         nickNameChangeStage.initModality(Modality.WINDOW_MODAL);
         nickNameChangeStage.initOwner(primaryStage);
         NickNameChangeController nickNameChangeController = nickNameChangeLoader.getController();
@@ -89,7 +89,10 @@ public class ChatClientApp extends Application {
 
     }
 
-
+    public void closeChangeNickNameWindows() {
+        nickNameChangeStage.close();
+        primaryStage.setTitle(network.getNickName());
+    }
 
 
     public void restartChat() throws IOException {

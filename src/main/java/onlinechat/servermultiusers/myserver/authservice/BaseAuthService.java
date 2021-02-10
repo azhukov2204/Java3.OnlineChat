@@ -8,7 +8,7 @@ public class BaseAuthService implements AuthService {
 
     @Override
     public synchronized String getNickNameByLoginAndPassword(String login, String password) throws SQLException {
-        PreparedStatement getUserRecordPreparedStatement = connection.prepareStatement("SELECT * FROM USERS WHERE UPPER(LOGIN) = ?");
+        PreparedStatement getUserRecordPreparedStatement = connection.prepareStatement("SELECT * FROM USERS WHERE UPPER(LOGIN) = ?;");
         getUserRecordPreparedStatement.setString(1, login.toUpperCase());
         ResultSet getUserRecordResultSet = getUserRecordPreparedStatement.executeQuery();
         if (getUserRecordResultSet.next()) {
@@ -21,6 +21,16 @@ public class BaseAuthService implements AuthService {
             }
         }
         return null;
+    }
+
+    @Override
+    public synchronized boolean changeNickName(String login, String newNickName) throws SQLException {
+        PreparedStatement updateNickNameStatement = connection.prepareStatement("UPDATE USERS SET NICKNAME = ? WHERE upper(LOGIN) = upper(?);");
+        updateNickNameStatement.setString(1, newNickName);
+        updateNickNameStatement.setString(2, login.toUpperCase());
+        int result = updateNickNameStatement.executeUpdate();
+        //System.out.println(updateNickNameStatement.toString());
+        return result != 0;
     }
 
     @Override

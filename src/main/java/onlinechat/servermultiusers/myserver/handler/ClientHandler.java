@@ -17,6 +17,7 @@ public class ClientHandler {
     private DataOutputStream out;
 
     private String nickName;
+    private String login="";
 
     private static final int SOCKET_TIMEOUT_MS = 120000; //тайм-аут 2 минуты. Если клиент не проявляет активность во время аутентификации в течении этого времени - сокет закрывается
 
@@ -29,6 +30,11 @@ public class ClientHandler {
     private static final String END_CMD_PREFIX = "/end"; //
     private static final String USERSLIST_CMD_PREFIX = "/usersList"; // + userslist
     private static final String USERSLISTRQ_CMD_PREFIX = "/usersListRq"; // + userslist
+
+    private static final String CHANGE_NICKNAME_CMD_PREFIX = "/changeNickName"; // + newNickName
+    private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
+    private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
+
 
     public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
         this.myServer = myServer;
@@ -83,10 +89,10 @@ public class ClientHandler {
             out.writeUTF(AUTHERR_CMD_PREFIX + ";Неверная команда авторизации");
             return false;
         }
-        String login = authMessageParts[1];
-        String password = authMessageParts[2];
+        String enteredLogin = authMessageParts[1];
+        String enteredPassword = authMessageParts[2];
 
-        nickName = baseAuthService.getNickNameByLoginAndPassword(login, password);
+        nickName = baseAuthService.getNickNameByLoginAndPassword(enteredLogin, enteredPassword);
 
         if (nickName != null) {
             if (myServer.isNickNameBusy(nickName)) {
@@ -94,6 +100,7 @@ public class ClientHandler {
                 return false;
             } else {
                 out.writeUTF(AUTHOK_CMD_PREFIX + ";" + nickName + ";успешно авторизован");
+                login = enteredLogin;
                 return true;
             }
         } else {
@@ -122,6 +129,9 @@ public class ClientHandler {
                             }
                         }
                         break;
+                    case CHANGE_NICKNAME_CMD_PREFIX:
+                        changeNickName(partsOfMessage[1]);
+                        break;
                     default:
                         myServer.sendBroadcastUserMessage(nickName, message);
                         break;
@@ -140,6 +150,22 @@ public class ClientHandler {
 
     public void sendUsersListToClient(String usersList) throws IOException {
         out.writeUTF(String.format("%s;%s", USERSLIST_CMD_PREFIX, usersList));
+    }
+
+    public void changeNickName(String newNickName) throws IOException {
+        System.out.println(newNickName);
+        try {
+            if(baseAuthService.changeNickName(login, newNickName)) {
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, "Имя пользователя успешно изменено"));
+                myServer.sendBroadcastSystemMessage(String.format("Пользователь %s изменил свой NickName на: %s", nickName, newNickName));
+                nickName = newNickName;
+                myServer.sendActiveUsersList();
+            } else {
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, "Ошибка при изменении логина пользователя"));
+            }
+        } catch (SQLException e) {
+            out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, e.getMessage()));
+        }
     }
 
 
