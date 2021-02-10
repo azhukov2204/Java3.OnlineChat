@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="onlinechat.client.controllers.MainChatWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <ListView fx:id="chatUsersList" focusTraversable="false" maxWidth="300.0" minWidth="50.0" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <bottom>
+                  <BorderPane prefHeight="78.0" prefWidth="346.0" BorderPane.alignment="CENTER">
+                     <right>
+                        <Button fx:id="sendMessageButton" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#sendMessage" prefHeight="50.0" prefWidth="81.0" text="Send message" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </right>
+                     <center>
+                        <TextField fx:id="sendMessageText" onAction="#sendMessage" onKeyTyped="#setActiveSendButton" prefHeight="62.0" prefWidth="255.0" promptText="Введите Ваше сообщение" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <BorderPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </BorderPane.margin></TextField>
+                     </center>
+                     <top>
+                        <Label fx:id="selectedNickNameLabel" prefHeight="20.0" prefWidth="338.0" text="Сообщение для всех пользователей чата: " BorderPane.alignment="CENTER" />
+                     </top>
+                  </BorderPane>
+               </bottom>
+               <center>
+                  <TableView fx:id="chatMessagesTable" focusTraversable="false" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="timeTableField" editable="false" maxWidth="66.0" minWidth="66.0" prefWidth="66.0" sortable="false" text="Time" />
+                      <TableColumn fx:id="userTableField" editable="false" minWidth="100.0" prefWidth="300.0" sortable="false" text="User" />
+                      <TableColumn fx:id="messageTableField" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="185.0" sortable="false" text="Message" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </center>
+            </BorderPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>
