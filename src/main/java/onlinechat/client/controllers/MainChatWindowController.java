@@ -1,6 +1,7 @@
 package onlinechat.client.controllers;
 
 import javafx.scene.input.MouseEvent;
+import onlinechat.client.ChatClientApp;
 import onlinechat.client.controllers.types.RowChatMessage;
 import onlinechat.client.models.Network;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MainChatWindowController {
 
     private Network network;
+    private ChatClientApp chatClientApp;
 
     private String selectedNickName = "";
 
@@ -50,6 +52,10 @@ public class MainChatWindowController {
 
     @FXML
     private TextField sendMessageText;
+
+    public void setChatClientApp(ChatClientApp chatClientApp) {
+        this.chatClientApp = chatClientApp;
+    }
 
     @FXML
     void initialize() {
@@ -137,7 +143,7 @@ public class MainChatWindowController {
         Alert about = new Alert(Alert.AlertType.INFORMATION);
         about.setTitle("О программе");
         about.setHeaderText("Online - чат");
-        about.setContentText("Курс Java Core. Продвинутый уровень.");
+        about.setContentText("Курс Java Core. Профессиональный уровень.");
         about.show();
     }
 
@@ -146,5 +152,14 @@ public class MainChatWindowController {
         chatUsersList.setItems(chatUsers);//Будем каждый раз пересоздавать список. Чтоб минимизировать ошибки в случае пропусков уведомлений
     }
 
+    @FXML
+    void openChangeNickNameWindow() {
+        try {
+            chatClientApp.createAndStartChangeNickNameWindow();
+        } catch (IOException e) {
+            System.out.println("Не удалось запустить окно для смены ника");
+            e.printStackTrace();
+        }
+    }
 
 }
