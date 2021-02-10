@@ -109,7 +109,7 @@ public class Network {
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                     alert.setTitle("Имя пользователя изменено успешно");
                                     alert.setHeaderText("Имя пользователя изменено успешно");
-                                    alert.show();
+                                    alert.showAndWait();
                                     chatClientApp.closeChangeNickNameWindows();
                                 });
                             }
@@ -119,8 +119,8 @@ public class Network {
                                     alert.setTitle("Ошибка смены имени пользователя");
                                     alert.setHeaderText("Ошибка смены имени пользователя");
                                     alert.setContentText(partsOfMessage[1]);
-                                    alert.show();
-                                    chatClientApp.closeChangeNickNameWindows();
+                                    alert.showAndWait();
+                                    //chatClientApp.closeChangeNickNameWindows();
                                 });
                             }
                             default -> Platform.runLater(() -> System.out.println("!!Неизвестная ошибка сервера" + message));

@@ -28,9 +28,25 @@ public class BaseAuthService implements AuthService {
         PreparedStatement updateNickNameStatement = connection.prepareStatement("UPDATE USERS SET NICKNAME = ? WHERE upper(LOGIN) = upper(?);");
         updateNickNameStatement.setString(1, newNickName);
         updateNickNameStatement.setString(2, login.toUpperCase());
-        int result = updateNickNameStatement.executeUpdate();
-        //System.out.println(updateNickNameStatement.toString());
-        return result != 0;
+        if (isNickNameBusy(newNickName)) {
+            return false;
+        } else {
+            int result = updateNickNameStatement.executeUpdate();
+            //System.out.println(updateNickNameStatement.toString());
+            return result != 0;
+        }
+    }
+
+    private synchronized boolean isNickNameBusy(String newNickName) throws SQLException {
+        PreparedStatement checkNickNameStatement = connection.prepareStatement("SELECT * FROM USERS WHERE NICKNAME = ?;");
+        checkNickNameStatement.setString(1, newNickName);
+        ResultSet resultSet = checkNickNameStatement.executeQuery();
+        if (resultSet.next()) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     @Override

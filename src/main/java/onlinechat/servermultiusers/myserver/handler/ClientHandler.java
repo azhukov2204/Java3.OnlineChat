@@ -161,7 +161,7 @@ public class ClientHandler {
                 nickName = newNickName;
                 myServer.sendActiveUsersList();
             } else {
-                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, "Ошибка при изменении логина пользователя"));
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, "Ошибка при изменении имени пользователя, такое имя занято"));
             }
         } catch (SQLException e) {
             out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, e.getMessage()));

@@ -39,7 +39,7 @@ public class NickNameChangeController {
             alert.setTitle("Имя пользователя не может быть пустым!");
             alert.setHeaderText("Имя пользователя не может быть пустым!");
             alert.setContentText("Введите имя пользователя");
-            alert.show();
+            alert.showAndWait();
         } else {
             try {
                 network.sendChangeNickNameCommand(newNickName);
@@ -48,7 +48,7 @@ public class NickNameChangeController {
                 alert.setTitle("Ошибка смены имени пользователя");
                 alert.setHeaderText("Ошибка смены имени пользователя");
                 alert.setContentText(e.getMessage());
-                alert.show();
+                alert.showAndWait();
                 chatClientApp.closeChangeNickNameWindows();
             }
         }
