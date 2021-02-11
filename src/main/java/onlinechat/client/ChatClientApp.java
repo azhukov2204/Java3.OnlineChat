@@ -84,7 +84,6 @@ public class ChatClientApp extends Application {
         nickNameChangeStage.initOwner(primaryStage);
         NickNameChangeController nickNameChangeController = nickNameChangeLoader.getController();
         nickNameChangeController.setNetwork(network);
-        nickNameChangeController.setChatClientApp(this);
         nickNameChangeStage.show();
 
     }

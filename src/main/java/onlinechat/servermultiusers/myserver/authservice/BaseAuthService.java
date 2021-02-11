@@ -41,11 +41,7 @@ public class BaseAuthService implements AuthService {
         PreparedStatement checkNickNameStatement = connection.prepareStatement("SELECT * FROM USERS WHERE NICKNAME = ?;");
         checkNickNameStatement.setString(1, newNickName);
         ResultSet resultSet = checkNickNameStatement.executeQuery();
-        if (resultSet.next()) {
-            return true;
-        } else {
-            return false;
-        }
+        return resultSet.next();
 
     }
 

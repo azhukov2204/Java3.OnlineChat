@@ -104,25 +104,21 @@ public class Network {
                                 String[] activeUsers = message.replace(USERSLIST_CMD_PREFIX + ";", "").split(";");
                                 Platform.runLater(() -> mainChatWindowController.updateUsersList(activeUsers));
                             }
-                            case CHANGE_NICKNAME_OK_CMD_PREFIX -> {
-                                Platform.runLater(() -> {
-                                    nickName = partsOfMessage[1];
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setTitle("Имя пользователя изменено успешно");
-                                    alert.setHeaderText("Имя пользователя изменено успешно");
-                                    alert.showAndWait();
-                                    chatClientApp.closeChangeNickNameWindows();
-                                });
-                            }
-                            case CHANGE_NICKNAME_ERR_CMD_PREFIX -> {
-                                Platform.runLater(() -> {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("Ошибка смены имени пользователя");
-                                    alert.setHeaderText("Ошибка смены имени пользователя");
-                                    alert.setContentText(partsOfMessage[1]);
-                                    alert.showAndWait();
-                                });
-                            }
+                            case CHANGE_NICKNAME_OK_CMD_PREFIX -> Platform.runLater(() -> {
+                                nickName = partsOfMessage[1];
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Имя пользователя изменено успешно");
+                                alert.setHeaderText("Имя пользователя изменено успешно");
+                                alert.showAndWait();
+                                chatClientApp.closeChangeNickNameWindows();
+                            });
+                            case CHANGE_NICKNAME_ERR_CMD_PREFIX -> Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Ошибка смены имени пользователя");
+                                alert.setHeaderText("Ошибка смены имени пользователя");
+                                alert.setContentText(partsOfMessage[1]);
+                                alert.showAndWait();
+                            });
                             default -> Platform.runLater(() -> System.out.println("!!Неизвестная ошибка сервера" + message));
                         }
                     }

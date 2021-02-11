@@ -1,18 +1,15 @@
 package onlinechat.client.controllers;
 
 import javafx.scene.control.Alert;
-import onlinechat.client.ChatClientApp;
 import onlinechat.client.models.Network;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class NickNameChangeController {
     private Network network;
-    private ChatClientApp chatClientApp;
 
     @FXML
     private TextField newNickNameField;
@@ -21,17 +18,9 @@ public class NickNameChangeController {
         this.network = network;
     }
 
-    public void setChatClientApp(ChatClientApp chatClientApp) {
-        this.chatClientApp = chatClientApp;
-    }
-
-    public void clearNewNickNameField() {
-        newNickNameField.clear();
-    }
 
     @FXML
     void changeNickName() {
-        System.out.println("Смена ника");
         String newNickName = newNickNameField.getText().trim();
 
         if (newNickName.isBlank()) {
