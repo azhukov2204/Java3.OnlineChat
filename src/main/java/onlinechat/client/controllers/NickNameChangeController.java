@@ -49,17 +49,8 @@ public class NickNameChangeController {
                 alert.setHeaderText("Ошибка смены имени пользователя");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
-                chatClientApp.closeChangeNickNameWindows();
             }
         }
-
-
-
-        /*Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Ошибка аутентификации");
-        alert.setHeaderText("Ошибка аутентификации");
-        alert.setContentText(authErrorMessage);
-        alert.show();*/
 
     }
 

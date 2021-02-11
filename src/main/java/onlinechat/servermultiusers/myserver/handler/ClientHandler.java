@@ -51,7 +51,8 @@ public class ClientHandler {
                 authenticationAndSubscribe();
                 startReceiver();
             } catch (IOException|SQLException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     myServer.unsubscribeClient(this);
@@ -153,10 +154,10 @@ public class ClientHandler {
     }
 
     public void changeNickName(String newNickName) throws IOException {
-        System.out.println(newNickName);
+        System.out.printf("Попытка смены ника с %s на %s%n", nickName, newNickName);
         try {
             if(baseAuthService.changeNickName(login, newNickName)) {
-                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, "Имя пользователя успешно изменено"));
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, newNickName));
                 myServer.sendBroadcastSystemMessage(String.format("Пользователь %s изменил свой NickName на: %s", nickName, newNickName));
                 nickName = newNickName;
                 myServer.sendActiveUsersList();

@@ -27,7 +27,7 @@ public class Network {
 
     private static final String CHANGE_NICKNAME_CMD_PREFIX = "/changeNickName"; // + newNickName
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
-    private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
+    private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + error message
 
 
     private final String serverHost;
@@ -106,6 +106,7 @@ public class Network {
                             }
                             case CHANGE_NICKNAME_OK_CMD_PREFIX -> {
                                 Platform.runLater(() -> {
+                                    nickName = partsOfMessage[1];
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                     alert.setTitle("Имя пользователя изменено успешно");
                                     alert.setHeaderText("Имя пользователя изменено успешно");
@@ -120,7 +121,6 @@ public class Network {
                                     alert.setHeaderText("Ошибка смены имени пользователя");
                                     alert.setContentText(partsOfMessage[1]);
                                     alert.showAndWait();
-                                    //chatClientApp.closeChangeNickNameWindows();
                                 });
                             }
                             default -> Platform.runLater(() -> System.out.println("!!Неизвестная ошибка сервера" + message));

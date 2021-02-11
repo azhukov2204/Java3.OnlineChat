@@ -91,6 +91,7 @@ public class ChatClientApp extends Application {
 
     public void closeChangeNickNameWindows() {
         nickNameChangeStage.close();
+        System.out.println("Новое имя пользователя " + network.getNickName());
         primaryStage.setTitle(network.getNickName());
     }
 

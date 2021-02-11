@@ -12,7 +12,7 @@ public class BaseAuthService implements AuthService {
         getUserRecordPreparedStatement.setString(1, login.toUpperCase());
         ResultSet getUserRecordResultSet = getUserRecordPreparedStatement.executeQuery();
         if (getUserRecordResultSet.next()) {
-            System.out.printf("login = %s, passwd = %s, nickname = %s%n", getUserRecordResultSet.getString(2), getUserRecordResultSet.getString(3), getUserRecordResultSet.getString(4));
+            //System.out.printf("login = %s, passwd = %s, nickname = %s%n", getUserRecordResultSet.getString(2), getUserRecordResultSet.getString(3), getUserRecordResultSet.getString(4));
             String userPassword = getUserRecordResultSet.getString("PASSWORD");
             String userNickName = getUserRecordResultSet.getString("NICKNAME");
 
