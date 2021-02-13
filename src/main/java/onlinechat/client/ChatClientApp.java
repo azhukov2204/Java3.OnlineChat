@@ -3,6 +3,7 @@ package onlinechat.client;
 import javafx.stage.Modality;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
+import onlinechat.client.controllers.NickNameChangeController;
 import onlinechat.client.models.Network;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,17 +17,17 @@ public class ChatClientApp extends Application {
 
     private Stage primaryStage;
     private Stage authWindowStage;
+    private Stage nickNameChangeStage;
     private Network network;
     private MainChatWindowController mainChatWindowController;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         this.primaryStage = primaryStage;
         network = new Network(); //todo сделать возможность подключения клиента по произвольным host:port
         createAndStartAuthWindow();
         createMainChatWindow();
-
     }
 
 
@@ -59,8 +60,8 @@ public class ChatClientApp extends Application {
         primaryStage.setScene(new Scene(mainChatWindowRoot));
         mainChatWindowController = mainChatWindowLoader.getController();
         network.setChatClientApp(this);
+        mainChatWindowController.setChatClientApp(this);
     }
-
 
     public void startChat() {
         authWindowStage.close();
@@ -72,6 +73,26 @@ public class ChatClientApp extends Application {
         mainChatWindowController.setNetwork(network);
     }
 
+    public void createAndStartChangeNickNameWindow() throws IOException {
+        FXMLLoader nickNameChangeLoader = new FXMLLoader();
+        nickNameChangeLoader.setLocation(ChatClientApp.class.getResource("../../views/NickNameChange.fxml"));
+        Parent nickNameChangeRoot = nickNameChangeLoader.load();
+        nickNameChangeStage = new Stage();
+        nickNameChangeStage.setTitle("Смена имени пользователя");
+        nickNameChangeStage.setScene(new Scene(nickNameChangeRoot));
+        nickNameChangeStage.initModality(Modality.WINDOW_MODAL);
+        nickNameChangeStage.initOwner(primaryStage);
+        NickNameChangeController nickNameChangeController = nickNameChangeLoader.getController();
+        nickNameChangeController.setNetwork(network);
+        nickNameChangeStage.show();
+
+    }
+
+    public void closeChangeNickNameWindows() {
+        nickNameChangeStage.close();
+        System.out.println("Новое имя пользователя " + network.getNickName());
+        primaryStage.setTitle(network.getNickName());
+    }
 
 
     public void restartChat() throws IOException {

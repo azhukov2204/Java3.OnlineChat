@@ -1,61 +1,52 @@
 package onlinechat.servermultiusers.myserver.authservice;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.*;
 
 public class BaseAuthService implements AuthService {
 
-    //этот тип используется только тут, сделаем класс вложенным
-    private static class User {
-        private final String login;
-        private final String password;
-        private final String nickName;
-
-        public User(String login, String password, String nickName) {
-            this.login = login;
-            this.password = password;
-            this.nickName = nickName;
-        }
-
-        public String getLogin() {
-            return login;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public String getNickName() {
-            return nickName;
-        }
-    }
-
-    private List<User> users;
     private Connection connection;
 
-    //При создании объекта происходит инициализация списка учетных записей, пока хардкод
-    public BaseAuthService() {
-        users = List.of(
-                new User("boris", "111111", "Боря"),
-                new User("andrey", "111111", "Андрей"),
-                new User("ivan", "111111", "Ваня")
-        );
-    }
-
     @Override
-    public String getNickNameByLoginAndPassword(String login, String password) {
-        for (User user : users) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                return user.getNickName();
+    public synchronized String getNickNameByLoginAndPassword(String login, String password) throws SQLException {
+        PreparedStatement getUserRecordPreparedStatement = connection.prepareStatement("SELECT * FROM USERS WHERE UPPER(LOGIN) = ?;");
+        getUserRecordPreparedStatement.setString(1, login.toUpperCase());
+        ResultSet getUserRecordResultSet = getUserRecordPreparedStatement.executeQuery();
+        if (getUserRecordResultSet.next()) {
+            //System.out.printf("login = %s, passwd = %s, nickname = %s%n", getUserRecordResultSet.getString(2), getUserRecordResultSet.getString(3), getUserRecordResultSet.getString(4));
+            String userPassword = getUserRecordResultSet.getString("PASSWORD");
+            String userNickName = getUserRecordResultSet.getString("NICKNAME");
+
+            if (userPassword.equals(password)) {
+                return userNickName;
             }
         }
         return null;
     }
 
     @Override
-    public void startAuthentication() throws ClassNotFoundException, SQLException {
+    public synchronized boolean changeNickName(String login, String newNickName) throws SQLException {
+        PreparedStatement updateNickNameStatement = connection.prepareStatement("UPDATE USERS SET NICKNAME = ? WHERE upper(LOGIN) = upper(?);");
+        updateNickNameStatement.setString(1, newNickName);
+        updateNickNameStatement.setString(2, login.toUpperCase());
+        if (isNickNameBusy(newNickName)) {
+            return false;
+        } else {
+            int result = updateNickNameStatement.executeUpdate();
+            //System.out.println(updateNickNameStatement.toString());
+            return result != 0;
+        }
+    }
+
+    private synchronized boolean isNickNameBusy(String newNickName) throws SQLException {
+        PreparedStatement checkNickNameStatement = connection.prepareStatement("SELECT * FROM USERS WHERE NICKNAME = ?;");
+        checkNickNameStatement.setString(1, newNickName);
+        ResultSet resultSet = checkNickNameStatement.executeQuery();
+        return resultSet.next();
+
+    }
+
+    @Override
+    public void startAuthenticationService() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/mainDB.db");
 
@@ -63,7 +54,7 @@ public class BaseAuthService implements AuthService {
     }
 
     @Override
-    public void endAuthentication() throws SQLException {
+    public void endAuthenticationService() throws SQLException {
         connection.close();
         System.out.println("Сервис аутентификации остановлен");
     }

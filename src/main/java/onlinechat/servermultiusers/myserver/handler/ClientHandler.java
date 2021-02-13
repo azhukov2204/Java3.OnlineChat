@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientHandler {
     private final MyServer myServer;
@@ -16,6 +17,7 @@ public class ClientHandler {
     private DataOutputStream out;
 
     private String nickName;
+    private String login="";
 
     private static final int SOCKET_TIMEOUT_MS = 120000; //тайм-аут 2 минуты. Если клиент не проявляет активность во время аутентификации в течении этого времени - сокет закрывается
 
@@ -28,6 +30,11 @@ public class ClientHandler {
     private static final String END_CMD_PREFIX = "/end"; //
     private static final String USERSLIST_CMD_PREFIX = "/usersList"; // + userslist
     private static final String USERSLISTRQ_CMD_PREFIX = "/usersListRq"; // + userslist
+
+    private static final String CHANGE_NICKNAME_CMD_PREFIX = "/changeNickName"; // + newNickName
+    private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
+    private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
+
 
     public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
         this.myServer = myServer;
@@ -43,8 +50,9 @@ public class ClientHandler {
             try {
                 authenticationAndSubscribe();
                 startReceiver();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException|SQLException e) {
+                //e.printStackTrace();
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     myServer.unsubscribeClient(this);
@@ -56,9 +64,9 @@ public class ClientHandler {
         }).start();
     }
 
-    private void authenticationAndSubscribe() throws IOException {
+    private void authenticationAndSubscribe() throws IOException, SQLException {
         String message;
-        System.out.printf("Устанавливаем тайм-аут сокета %d мс", SOCKET_TIMEOUT_MS);
+        System.out.printf("Устанавливаем тайм-аут сокета %d мс%n", SOCKET_TIMEOUT_MS);
         clientSocket.setSoTimeout(SOCKET_TIMEOUT_MS);
 
         boolean isAuthenticationSuccessful = false;
@@ -76,16 +84,16 @@ public class ClientHandler {
         clientSocket.setSoTimeout(0);   //после прохождения аутентификации снимаем ограничение по тайм-ауту
     }
 
-    private boolean isAuthenticationSuccessful(String message) throws IOException {
+    private boolean isAuthenticationSuccessful(String message) throws IOException, SQLException {
         String[] authMessageParts = message.split(";", 3);
         if (authMessageParts.length != 3) {
             out.writeUTF(AUTHERR_CMD_PREFIX + ";Неверная команда авторизации");
             return false;
         }
-        String login = authMessageParts[1];
-        String password = authMessageParts[2];
+        String enteredLogin = authMessageParts[1];
+        String enteredPassword = authMessageParts[2];
 
-        nickName = baseAuthService.getNickNameByLoginAndPassword(login, password);
+        nickName = baseAuthService.getNickNameByLoginAndPassword(enteredLogin, enteredPassword);
 
         if (nickName != null) {
             if (myServer.isNickNameBusy(nickName)) {
@@ -93,6 +101,7 @@ public class ClientHandler {
                 return false;
             } else {
                 out.writeUTF(AUTHOK_CMD_PREFIX + ";" + nickName + ";успешно авторизован");
+                login = enteredLogin;
                 return true;
             }
         } else {
@@ -121,6 +130,9 @@ public class ClientHandler {
                             }
                         }
                         break;
+                    case CHANGE_NICKNAME_CMD_PREFIX:
+                        changeNickName(partsOfMessage[1]);
+                        break;
                     default:
                         myServer.sendBroadcastUserMessage(nickName, message);
                         break;
@@ -139,6 +151,22 @@ public class ClientHandler {
 
     public void sendUsersListToClient(String usersList) throws IOException {
         out.writeUTF(String.format("%s;%s", USERSLIST_CMD_PREFIX, usersList));
+    }
+
+    public void changeNickName(String newNickName) throws IOException {
+        System.out.printf("Попытка смены ника с %s на %s%n", nickName, newNickName);
+        try {
+            if(baseAuthService.changeNickName(login, newNickName)) {
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, newNickName));
+                myServer.sendBroadcastSystemMessage(String.format("Пользователь %s изменил свой NickName на: %s", nickName, newNickName));
+                nickName = newNickName;
+                myServer.sendActiveUsersList();
+            } else {
+                out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, "Ошибка при изменении имени пользователя, такое имя занято"));
+            }
+        } catch (SQLException e) {
+            out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_ERR_CMD_PREFIX, e.getMessage()));
+        }
     }
 
 
