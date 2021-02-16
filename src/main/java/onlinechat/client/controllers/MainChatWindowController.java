@@ -123,6 +123,7 @@ public class MainChatWindowController {
         chatMessagesTable.getItems().add(new RowChatMessage(currentTime, nickName, message));
         int messagesCount = chatMessagesTable.getItems().size();
         chatMessagesTable.scrollTo(messagesCount - 1); //прокрутим к последнему сообшению
+        chatClientApp.getChatMessagesHistoryLogger().writeMessageToFile(currentTime, nickName, message);
     }
 
 
