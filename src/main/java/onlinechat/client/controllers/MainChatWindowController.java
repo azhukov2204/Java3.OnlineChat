@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -124,6 +125,15 @@ public class MainChatWindowController {
         int messagesCount = chatMessagesTable.getItems().size();
         chatMessagesTable.scrollTo(messagesCount - 1); //прокрутим к последнему сообшению
         chatClientApp.getChatMessagesHistoryLogger().writeMessageToFile(currentTime, nickName, message);
+    }
+
+    public void addListMessages(ArrayList<String> messagesList) {
+        for (String s : messagesList) {
+            String[] str = s.split("\\|", 3);
+            chatMessagesTable.getItems().add(new RowChatMessage(str[0], str[1], str[2]));
+        }
+        int messagesCount = chatMessagesTable.getItems().size();
+        chatMessagesTable.scrollTo(messagesCount - 1); //прокрутим к последнему сообшению
     }
 
 

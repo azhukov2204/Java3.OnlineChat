@@ -1,22 +1,19 @@
 package onlinechat.client.models;
 
+
 import java.io.*;
+import java.util.ArrayList;
 
 public class ChatMessagesHistoryLogger {
     private static final String FILENAME_PREFIX = "history_";
     private static final String FILENAME_POSTFIX = ".txt";
     private static final String DIRECTORY = "src/main/resources/chat_history/";
 
-    private String login;
-    private String messagesHistoryFilename;
-    private String messagesHistoryFullFilename;
-
-    private File messagesHistoryFile;
+    private final File messagesHistoryFile;
 
     public ChatMessagesHistoryLogger(String login) {
-        this.login = login;
-        messagesHistoryFilename = FILENAME_PREFIX + login + FILENAME_POSTFIX;
-        messagesHistoryFullFilename = DIRECTORY + messagesHistoryFilename;
+        String messagesHistoryFilename = FILENAME_PREFIX + login + FILENAME_POSTFIX;
+        String messagesHistoryFullFilename = DIRECTORY + messagesHistoryFilename;
         messagesHistoryFile = new File(messagesHistoryFullFilename);
 
     }
@@ -48,23 +45,37 @@ public class ChatMessagesHistoryLogger {
         }
     }
 
-    public void getNMessagesFromFile(int countToRead) {
+    public ArrayList<String> getNMessagesFromFile(int countLinesToRead) {
+        ArrayList<String> stringArrayList = new ArrayList<>();
         if (messagesHistoryFile.exists()) {
-            int countLines = 0;
-            String str;
-
-            try (BufferedReader reader = new BufferedReader(new FileReader(messagesHistoryFile))) {
-                while ((str = reader.readLine()) != null) {
-                    countLines++;
+            try {
+                long numberOfFileLines = getNumberOfFileLines();
+                long skipLines = (countLinesToRead < numberOfFileLines) ? (numberOfFileLines - countLinesToRead) : 0;
+                BufferedReader reader = new BufferedReader(new FileReader(messagesHistoryFile));
+                //пропуск skipLines строк:
+                for (int i = 0; i < skipLines; i++) {
+                    reader.readLine();
                 }
-                System.out.println("Количество строк в файле: " + countLines);
-
+                String str;
+                while ((str = reader.readLine()) != null) {
+                    stringArrayList.add(str);
+                }
+                reader.close();
             } catch (IOException e) {
+                System.out.println("Не удалось считать сообщения из файла");
                 e.printStackTrace();
             }
         } else {
             System.out.println("Файл истории сообщений еще не существует");
         }
+        return stringArrayList;
+    }
+
+    private long getNumberOfFileLines() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(messagesHistoryFile));
+        long numberOfFileLines = reader.lines().count();
+        reader.close();
+        return numberOfFileLines;
     }
 
 
