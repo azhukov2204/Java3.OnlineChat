@@ -12,7 +12,7 @@ public class ChatMessagesHistoryLogger {
     private final File messagesHistoryFile;
 
     public ChatMessagesHistoryLogger(String login) {
-        String messagesHistoryFilename = FILENAME_PREFIX + login + FILENAME_POSTFIX;
+        String messagesHistoryFilename = FILENAME_PREFIX + login.toLowerCase() + FILENAME_POSTFIX;
         String messagesHistoryFullFilename = DIRECTORY + messagesHistoryFilename;
         messagesHistoryFile = new File(messagesHistoryFullFilename);
 
