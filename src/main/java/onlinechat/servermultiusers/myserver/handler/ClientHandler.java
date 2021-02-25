@@ -2,6 +2,8 @@ package onlinechat.servermultiusers.myserver.handler;
 
 import onlinechat.servermultiusers.myserver.MyServer;
 import onlinechat.servermultiusers.myserver.authservice.BaseAuthService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,7 +19,7 @@ public class ClientHandler {
     private DataOutputStream out;
 
     private String nickName;
-    private String login="";
+    private String login = "";
 
     private static final int SOCKET_TIMEOUT_MS = 120000; //тайм-аут 2 минуты. Если клиент не проявляет активность во время аутентификации в течении этого времени - сокет закрывается
 
@@ -35,6 +37,7 @@ public class ClientHandler {
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
 
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
         this.myServer = myServer;
@@ -50,14 +53,15 @@ public class ClientHandler {
             try {
                 authenticationAndSubscribe();
                 startReceiver();
-            } catch (IOException|SQLException e) {
+            } catch (IOException | SQLException e) {
                 //e.printStackTrace();
-                System.out.println(e.getMessage());
+                LOGGER.warn(e.toString()); //эта ситуация как правило ожидаемая, когда клиент отключается
             } finally {
                 try {
                     myServer.unsubscribeClient(this);
                     clientSocket.close();
                 } catch (IOException e) {
+                    LOGGER.error("Ошибка при выполнении unsubscribeClient\n" + e.toString());
                     e.printStackTrace();
                 }
             }
@@ -66,7 +70,7 @@ public class ClientHandler {
 
     private void authenticationAndSubscribe() throws IOException, SQLException {
         String message;
-        System.out.printf("Устанавливаем тайм-аут сокета %d мс%n", SOCKET_TIMEOUT_MS);
+        LOGGER.info(String.format("Устанавливаем тайм-аут сокета %d мс", SOCKET_TIMEOUT_MS));
         clientSocket.setSoTimeout(SOCKET_TIMEOUT_MS);
 
         boolean isAuthenticationSuccessful = false;
@@ -80,7 +84,7 @@ public class ClientHandler {
         } while (!isAuthenticationSuccessful);
 
         myServer.subscribeClient(this);
-        System.out.println("Снимаем с сокета ограничение по тайм-ауту");
+        LOGGER.info("Снимаем с сокета ограничение по тайм-ауту");
         clientSocket.setSoTimeout(0);   //после прохождения аутентификации снимаем ограничение по тайм-ауту
     }
 
@@ -154,9 +158,9 @@ public class ClientHandler {
     }
 
     public void changeNickName(String newNickName) throws IOException {
-        System.out.printf("Попытка смены ника с %s на %s%n", nickName, newNickName);
+        LOGGER.info(String.format("Попытка смены ника с %s на %s", nickName, newNickName));
         try {
-            if(baseAuthService.changeNickName(login, newNickName)) {
+            if (baseAuthService.changeNickName(login, newNickName)) {
                 out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, newNickName));
                 myServer.sendBroadcastSystemMessage(String.format("Пользователь %s изменил свой NickName на: %s", nickName, newNickName));
                 nickName = newNickName;

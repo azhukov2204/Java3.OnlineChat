@@ -1,10 +1,15 @@
 package onlinechat.servermultiusers.myserver.authservice;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 
 public class BaseAuthService implements AuthService {
 
     private Connection connection;
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public synchronized String getNickNameByLoginAndPassword(String login, String password) throws SQLException {
@@ -12,7 +17,8 @@ public class BaseAuthService implements AuthService {
         getUserRecordPreparedStatement.setString(1, login.toUpperCase());
         ResultSet getUserRecordResultSet = getUserRecordPreparedStatement.executeQuery();
         if (getUserRecordResultSet.next()) {
-            //System.out.printf("login = %s, passwd = %s, nickname = %s%n", getUserRecordResultSet.getString(2), getUserRecordResultSet.getString(3), getUserRecordResultSet.getString(4));
+            //для вывода этого сообщения надо изменить уровень логирования в настройках логгера:
+            LOGGER.debug(String.format("login = %s, passwd = %s, nickname = %s", getUserRecordResultSet.getString(2), getUserRecordResultSet.getString(3), getUserRecordResultSet.getString(4)));
             String userPassword = getUserRecordResultSet.getString("PASSWORD");
             String userNickName = getUserRecordResultSet.getString("NICKNAME");
 
@@ -32,7 +38,8 @@ public class BaseAuthService implements AuthService {
             return false;
         } else {
             int result = updateNickNameStatement.executeUpdate();
-            //System.out.println(updateNickNameStatement.toString());
+            //для вывода этого сообщения надо изменить уровень логирования в настройках логгера:
+            LOGGER.debug(updateNickNameStatement.toString());
             return result != 0;
         }
     }
@@ -50,12 +57,12 @@ public class BaseAuthService implements AuthService {
         Class.forName("org.sqlite.JDBC");
         connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/mainDB.db");
 
-        System.out.println("Сервис аутентификации запущен");
+        LOGGER.info("Сервис аутентификации запущен");
     }
 
     @Override
     public void endAuthenticationService() throws SQLException {
         connection.close();
-        System.out.println("Сервис аутентификации остановлен");
+        LOGGER.info("Сервис аутентификации остановлен");
     }
 }

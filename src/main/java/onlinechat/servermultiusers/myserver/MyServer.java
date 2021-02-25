@@ -2,6 +2,8 @@ package onlinechat.servermultiusers.myserver;
 
 import onlinechat.servermultiusers.myserver.authservice.BaseAuthService;
 import onlinechat.servermultiusers.myserver.handler.ClientHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -15,6 +17,8 @@ public class MyServer {
     private final BaseAuthService baseAuthService;
     private final List<ClientHandler> activeClients = new ArrayList<>();
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public MyServer(int port) throws IOException, ClassNotFoundException, SQLException {
         serverSocket = new ServerSocket(port);
         baseAuthService = new BaseAuthService();
@@ -23,22 +27,23 @@ public class MyServer {
 
 
     public void startMyServer() throws SQLException {
-        System.out.println("Сервер запущен");
+        LOGGER.info("Сервер запущен");
         try {
             while (true) {
-                System.out.println("Ожидаем подключения пользователя");
+                LOGGER.info("Ожидаем подключения пользователя");
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Клиент подключился, создаем указатель");
+                LOGGER.info("Клиент подключился, создаем указатель");
                 new ClientHandler(this, clientSocket, baseAuthService).startHandler();
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при подключении клиента");
+            LOGGER.error("Ошибка при подключении клиента");
+            LOGGER.error(e.toString());
             e.printStackTrace();
         } finally {
             if (baseAuthService != null) {
                 baseAuthService.endAuthenticationService();
             }
-            System.out.println("Сервер остановлен");
+            LOGGER.info("Сервер остановлен");
         }
     }
 
@@ -53,7 +58,7 @@ public class MyServer {
     }
 
     public synchronized void subscribeClient(ClientHandler clientHandler) throws IOException {
-        System.out.println("Подключился клиент " + clientHandler.getNickName());
+        LOGGER.info("Подключился клиент " + clientHandler.getNickName());
         activeClients.add(clientHandler);
         sendBroadcastSystemMessage("Подключился клиент " + clientHandler.getNickName());
         printActiveClients();
@@ -61,7 +66,7 @@ public class MyServer {
     }
 
     public synchronized void unsubscribeClient(ClientHandler clientHandler) throws IOException {
-        System.out.println("Отключился клиент " + clientHandler.getNickName());
+        LOGGER.info("Отключился клиент " + clientHandler.getNickName());
         activeClients.remove(clientHandler);
         sendBroadcastSystemMessage("Отключился клиент " + clientHandler.getNickName());
         printActiveClients();
@@ -70,10 +75,11 @@ public class MyServer {
 
 
     private synchronized void printActiveClients() {
-        System.out.println("Список активных клиентов:");
+        StringBuilder clientList = new StringBuilder("Список активных клиентов:\n");
         for (ClientHandler activeClient : activeClients) {
-            System.out.println(activeClient.getNickName());
+            clientList.append(activeClient.getNickName()).append("\n");
         }
+        LOGGER.info(clientList.toString());
     }
 
     public synchronized void sendBroadcastUserMessage(String senderNickName, String message) throws IOException {
