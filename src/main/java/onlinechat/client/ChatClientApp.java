@@ -4,6 +4,7 @@ import javafx.stage.Modality;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
 import onlinechat.client.controllers.NickNameChangeController;
+import onlinechat.client.models.ChatMessagesHistoryLogger;
 import onlinechat.client.models.Network;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +16,13 @@ import java.io.IOException;
 
 public class ChatClientApp extends Application {
 
+    private static final int COUNT_OF_MESSAGES_FROM_FILE_TO_READ = 100; //количество строк истории, которые нужно загрузить при запуске
+
     private Stage primaryStage;
     private Stage authWindowStage;
     private Stage nickNameChangeStage;
     private Network network;
+    private ChatMessagesHistoryLogger chatMessagesHistoryLogger;
     private MainChatWindowController mainChatWindowController;
 
     @Override
@@ -64,6 +68,7 @@ public class ChatClientApp extends Application {
     }
 
     public void startChat() {
+        chatMessagesHistoryLogger = new ChatMessagesHistoryLogger(network.getUserLogin().toLowerCase()); //создаем логгер истории сообщений
         authWindowStage.close();
         primaryStage.show();
         primaryStage.setTitle(network.getNickName());
@@ -71,6 +76,7 @@ public class ChatClientApp extends Application {
         network.setMainChatWindowController(mainChatWindowController);
         network.startReceiver();
         mainChatWindowController.setNetwork(network);
+        mainChatWindowController.addListMessages(chatMessagesHistoryLogger.getNMessagesFromFile(COUNT_OF_MESSAGES_FROM_FILE_TO_READ));
     }
 
     public void createAndStartChangeNickNameWindow() throws IOException {
@@ -97,6 +103,10 @@ public class ChatClientApp extends Application {
 
     public void restartChat() throws IOException {
         createAndStartAuthWindow();
-        //createMainChatWindow(); //этот метод пересоздаст главное окно чата, диалоги будут стерты. Пока закомментарил. В будущем этот метод можно вызывать, если сменился логин пользователя
+        createMainChatWindow(); //этот метод пересоздаст главное окно чата, диалоги будут стерты. Пока закомментарил. В будущем этот метод можно вызывать, если сменился логин пользователя
+    }
+
+    public ChatMessagesHistoryLogger getChatMessagesHistoryLogger() {
+        return chatMessagesHistoryLogger;
     }
 }

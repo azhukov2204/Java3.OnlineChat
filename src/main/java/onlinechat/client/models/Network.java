@@ -37,6 +37,7 @@ public class Network {
     private DataOutputStream out = null;
 
     private String nickName;
+    private String userLogin = "";
     private ChatClientApp chatClientApp;
     private MainChatWindowController mainChatWindowController;
 
@@ -62,6 +63,10 @@ public class Network {
 
     public String getNickName() {
         return nickName;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
     }
 
     public void connection() {
@@ -166,6 +171,7 @@ public class Network {
 
         if (response.startsWith(AUTHOK_CMD_PREFIX)) {
             nickName = response.split(";", 3)[1];
+            userLogin = login;
             return null;
         } else {
             return response.split(";", 2)[1];
