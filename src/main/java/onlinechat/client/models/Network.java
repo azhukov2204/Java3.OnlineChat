@@ -25,6 +25,10 @@ public class Network {
     private static final String USERSLIST_CMD_PREFIX = "/usersList"; // + userslist
     private static final String USERSLISTRQ_CMD_PREFIX = "/usersListRq"; // + userslist
 
+    private static final String CHANGE_NICKNAME_CMD_PREFIX = "/changeNickName"; // + newNickName
+    private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
+    private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + error message
+
 
     private final String serverHost;
     private final int serverPort;
@@ -33,6 +37,7 @@ public class Network {
     private DataOutputStream out = null;
 
     private String nickName;
+    private String userLogin = "";
     private ChatClientApp chatClientApp;
     private MainChatWindowController mainChatWindowController;
 
@@ -58,6 +63,10 @@ public class Network {
 
     public String getNickName() {
         return nickName;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
     }
 
     public void connection() {
@@ -100,6 +109,21 @@ public class Network {
                                 String[] activeUsers = message.replace(USERSLIST_CMD_PREFIX + ";", "").split(";");
                                 Platform.runLater(() -> mainChatWindowController.updateUsersList(activeUsers));
                             }
+                            case CHANGE_NICKNAME_OK_CMD_PREFIX -> Platform.runLater(() -> {
+                                nickName = partsOfMessage[1];
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Имя пользователя изменено успешно");
+                                alert.setHeaderText("Имя пользователя изменено успешно");
+                                alert.showAndWait();
+                                chatClientApp.closeChangeNickNameWindows();
+                            });
+                            case CHANGE_NICKNAME_ERR_CMD_PREFIX -> Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Ошибка смены имени пользователя");
+                                alert.setHeaderText("Ошибка смены имени пользователя");
+                                alert.setContentText(partsOfMessage[1]);
+                                alert.showAndWait();
+                            });
                             default -> Platform.runLater(() -> System.out.println("!!Неизвестная ошибка сервера" + message));
                         }
                     }
@@ -147,10 +171,15 @@ public class Network {
 
         if (response.startsWith(AUTHOK_CMD_PREFIX)) {
             nickName = response.split(";", 3)[1];
+            userLogin = login;
             return null;
         } else {
             return response.split(";", 2)[1];
         }
+    }
+
+    public void sendChangeNickNameCommand(String newNickName) throws IOException {
+        out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_CMD_PREFIX, newNickName));
     }
 
 

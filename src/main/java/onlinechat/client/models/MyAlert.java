@@ -3,8 +3,6 @@ package onlinechat.client.models;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-import java.util.Optional;
-
 public class MyAlert extends Alert {
 
     public static final ButtonType yesButton = new ButtonType("Да");
