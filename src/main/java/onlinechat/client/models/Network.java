@@ -105,6 +105,17 @@ public class Network {
         return isConnected;
     }
 
+    public void closeConnection() {
+        isConnected = false;
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            LOGGER.error("Ошибка при закрытии clientSocket");
+            LOGGER.error(e.toString());
+            e.printStackTrace();
+        }
+    }
+
     public boolean isConnected() {
         return isConnected;
     }

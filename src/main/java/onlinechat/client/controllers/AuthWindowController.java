@@ -3,8 +3,6 @@ package onlinechat.client.controllers;
 import java.io.IOException;
 import java.net.SocketException;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -46,53 +44,60 @@ public class AuthWindowController {
 
     @FXML
     void initialize() {
-        serverPortField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    serverPortField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-                if (newValue.length() >= 4) {
-                    serverPortField.setText(newValue.substring(0, 4));
+        serverPortField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                serverPortField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            if (newValue.length() >= 4) {
+                serverPortField.setText(newValue.substring(0, 4));
 
-                }
             }
         });
     }
 
     @FXML
-    void doAuthentication(ActionEvent event) {
+    void doConnectionAndAuthentication(ActionEvent event) {
         LOGGER.info("Попытка аутентификации");
         String login = loginField.getText().trim();
         String password = passwordField.getText().trim();
-        String serverHost = serverHostField.getText().trim();
-        String serverPort = serverPortField.getText().trim();
 
         if (login.length() == 0) {
             LOGGER.info("Введен пустой логин. Логин не может быть пустым");
             return;
         }
 
-        if (!serverHost.isBlank()) {
-            network.setServerHost(serverHost);
-        } else {
-            network.setServerHost();
+        tryConnection();
+        if (network.isConnected()) {
+            tryAuthentication(login, password);
         }
+    }
 
-        if (!serverPort.isBlank()) {
-            network.setServerPort(Integer.parseInt(serverPort));
-        } else {
-            network.setServerPort();
-        }
-
+    private void tryConnection() {
         if (!network.isConnected()) {
+            String serverHost = serverHostField.getText().trim();
+            String serverPort = serverPortField.getText().trim();
+
+            if (!serverHost.isBlank()) {
+                network.setServerHost(serverHost);
+            } else {
+                network.setServerHost(); //установка дефолтного значения
+            }
+
+            if (!serverPort.isBlank()) {
+                network.setServerPort(Integer.parseInt(serverPort));
+            } else {
+                network.setServerPort(); //установка дефолтного значения
+            }
+
             if (network.connection()) {
                 serverHostField.setDisable(true);
                 serverPortField.setDisable(true);
             }
         }
+    }
 
-        String authErrorMessage = "";
+    private void tryAuthentication(String login, String password) {
+        String authErrorMessage;
         try {
             authErrorMessage = network.sendAuthCommand(login, password);
         } catch (SocketException e) {
@@ -111,7 +116,9 @@ public class AuthWindowController {
             chatClientApp.startChat();
         } else if (authErrorMessage.equals("SocketException")) {
             if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение, возможно из-за длительного бездействия", "Повторить попытку подключения?")).showAndWait().get() == MyAlert.yesButton) {
-                network.connection();
+                network.closeConnection();
+                serverHostField.setDisable(false);
+                serverPortField.setDisable(false);
             } else {
                 System.exit(-1);
             }
