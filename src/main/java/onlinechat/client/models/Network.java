@@ -32,8 +32,8 @@ public class Network {
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + error message
 
 
-    private final String serverHost;
-    private final int serverPort;
+    private String serverHost;
+    private int serverPort;
     private Socket clientSocket;
     private DataInputStream in = null;
     private DataOutputStream out = null;
@@ -52,14 +52,26 @@ public class Network {
     }
 
     public Network() {
-        serverHost = DEFAULT_SERVER_HOST;
-        serverPort = DEFAULT_SERVER_PORT;
+        setServerHost();
+        setServerPort();
     }
 
-    public Network(String serverHost, int serverPort) {
+    public void setServerHost(String serverHost) {
         this.serverHost = serverHost;
+    }
+
+    public void setServerHost() {
+        this.serverHost = DEFAULT_SERVER_HOST;
+    }
+
+    public void setServerPort(int serverPort) {
         this.serverPort = serverPort;
     }
+
+    public void setServerPort() {
+        this.serverPort = DEFAULT_SERVER_PORT;
+    }
+
 
     public void setMainChatWindowController(MainChatWindowController mainChatWindowController) {
         this.mainChatWindowController = mainChatWindowController;
@@ -73,24 +85,28 @@ public class Network {
         return userLogin;
     }
 
-    public void connection() {
+    public boolean connection() {
         try {
             clientSocket = new Socket(serverHost, serverPort);
             in = new DataInputStream(clientSocket.getInputStream());
             out = new DataOutputStream(clientSocket.getOutputStream());
             isConnected = true;
             LOGGER.info("Соединение установлено");
-
         } catch (IOException e) {
             isConnected = false;
             LOGGER.warn("Отсутствует подключение");
             LOGGER.warn(e.toString());
             e.printStackTrace();
 
-            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Повторить попытку подключения?")).showAndWait().get() != MyAlert.yesButton) {
+            if ((new MyAlert(Alert.AlertType.ERROR, "Невозможно установить соединение", "Невозможно установить соединение", "Повторить попытку подключения? \nПроверьте корректность указанного адреса и порта сервера")).showAndWait().get() != MyAlert.yesButton) {
                 System.exit(-1);
             }
         }
+        return isConnected;
+    }
+
+    public boolean isConnected() {
+        return isConnected;
     }
 
     public void startReceiver() {

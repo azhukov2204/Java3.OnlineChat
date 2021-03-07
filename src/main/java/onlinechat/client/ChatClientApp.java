@@ -33,7 +33,7 @@ public class ChatClientApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         LOGGER.info("Запуск клиента");
         this.primaryStage = primaryStage;
-        network = new Network(); //todo сделать возможность подключения клиента по произвольным host:port
+        network = new Network();
         createAndStartAuthWindow();
         createMainChatWindow();
     }
