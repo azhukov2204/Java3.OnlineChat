@@ -1,17 +1,22 @@
 package onlinechat.client.models;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.util.ArrayList;
 
-public class ChatMessagesHistoryLogger {
+public class ChatMessagesHistoryWriter {
     private static final String FILENAME_PREFIX = "history_";
     private static final String FILENAME_POSTFIX = ".txt";
     private static final String DIRECTORY = "src/main/resources/chat_history/";
 
     private final File messagesHistoryFile;
 
-    public ChatMessagesHistoryLogger(String login) {
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
+
+    public ChatMessagesHistoryWriter(String login) {
         String messagesHistoryFilename = FILENAME_PREFIX + login.toLowerCase() + FILENAME_POSTFIX;
         String messagesHistoryFullFilename = DIRECTORY + messagesHistoryFilename;
         messagesHistoryFile = new File(messagesHistoryFullFilename);
@@ -32,7 +37,8 @@ public class ChatMessagesHistoryLogger {
         try {
             createHistoryFileIfNotExist();
         } catch (IOException e) {
-            System.out.println("Не удалось создать файл истории сообщений!");
+            LOGGER.error("Не удалось создать файл истории сообщений!");
+            LOGGER.error(e.toString());
             e.printStackTrace();
         }
 
@@ -40,7 +46,8 @@ public class ChatMessagesHistoryLogger {
             bufferedWriter.write(String.format("%s|%s|%s%n", time, nickName, message));
 
         } catch (IOException e) {
-            System.out.println("Не удалось записать информацию в файл истории сообщений");
+            LOGGER.error("Не удалось записать информацию в файл истории сообщений");
+            LOGGER.error(e.toString());
             e.printStackTrace();
         }
     }
@@ -62,11 +69,12 @@ public class ChatMessagesHistoryLogger {
                 }
                 reader.close();
             } catch (IOException e) {
-                System.out.println("Не удалось считать сообщения из файла");
+                LOGGER.error("Не удалось считать сообщения из файла");
+                LOGGER.error(e.toString());
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Файл истории сообщений еще не существует");
+            LOGGER.warn("Файл истории сообщений еще не существует");
         }
         return stringArrayList;
     }
@@ -77,7 +85,6 @@ public class ChatMessagesHistoryLogger {
         reader.close();
         return numberOfFileLines;
     }
-
 
 }
 

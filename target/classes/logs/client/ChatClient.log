@@ -1,0 +1,8 @@
+2021-03-07 16:31:49|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 16:33:14|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 16:38:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 16:38:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 16:38:12|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 16:40:18|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 16:40:18|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 16:40:19|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата

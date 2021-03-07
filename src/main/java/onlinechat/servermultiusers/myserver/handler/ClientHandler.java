@@ -37,7 +37,7 @@ public class ClientHandler {
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
     public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
         this.myServer = myServer;

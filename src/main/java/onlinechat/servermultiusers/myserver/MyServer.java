@@ -17,7 +17,7 @@ public class MyServer {
     private final BaseAuthService baseAuthService;
     private final List<ClientHandler> activeClients = new ArrayList<>();
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
     public MyServer(int port) throws IOException, ClassNotFoundException, SQLException {
         serverSocket = new ServerSocket(port);

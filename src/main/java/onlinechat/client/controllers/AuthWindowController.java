@@ -11,8 +11,12 @@ import javafx.event.ActionEvent;
 import onlinechat.client.ChatClientApp;
 import onlinechat.client.models.MyAlert;
 import onlinechat.client.models.Network;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AuthWindowController {
+
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
 
     private Network network;
     private ChatClientApp chatClientApp;
@@ -38,7 +42,7 @@ public class AuthWindowController {
         String password = passwordField.getText().trim();
 
         if (login.length() == 0) {
-            System.out.println("Логин не может быть пустым");
+            LOGGER.info("Введен пустой логин. Логин не может быть пустым");
             return;
         }
 
@@ -46,9 +50,13 @@ public class AuthWindowController {
         try {
             authErrorMessage = network.sendAuthCommand(login, password);
         } catch (SocketException e) {
+            LOGGER.warn("При вызове sendAuthCommand произошла SocketException");
+            LOGGER.warn(e.toString());
             e.printStackTrace();
             authErrorMessage = "SocketException";
         } catch (IOException e) {
+            LOGGER.warn("При вызове sendAuthCommand произошла IOException");
+            LOGGER.warn(e.toString());
             e.printStackTrace();
             authErrorMessage = e.getMessage();
         }

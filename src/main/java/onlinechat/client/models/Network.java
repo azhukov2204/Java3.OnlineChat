@@ -4,6 +4,8 @@ import javafx.scene.control.Alert;
 import onlinechat.client.ChatClientApp;
 import onlinechat.client.controllers.MainChatWindowController;
 import javafx.application.Platform;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -43,6 +45,8 @@ public class Network {
 
     private boolean isConnected = false;
 
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
+
     public void setChatClientApp(ChatClientApp chatClientApp) {
         this.chatClientApp = chatClientApp;
     }
@@ -75,11 +79,13 @@ public class Network {
             in = new DataInputStream(clientSocket.getInputStream());
             out = new DataOutputStream(clientSocket.getOutputStream());
             isConnected = true;
-            System.out.println("Соединение установлено");
+            LOGGER.info("Соединение установлено");
+
         } catch (IOException e) {
             isConnected = false;
+            LOGGER.warn("Отсутствует подключение");
+            LOGGER.warn(e.toString());
             e.printStackTrace();
-
 
             if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Повторить попытку подключения?")).showAndWait().get() == MyAlert.yesButton) {
                 connection();
@@ -128,9 +134,10 @@ public class Network {
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
                     isConnected = false;
-                    System.out.println("Соединение прервано");
+                    LOGGER.warn("Соединение прервано");
+                    LOGGER.warn(e.toString());
+                    e.printStackTrace();
                     Platform.runLater(() -> {
                         try {
                             if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Сеанс завершен. Повторить вход в чат? Будет запущен новый сеанс")).showAndWait().get() == MyAlert.yesButton) {
@@ -139,12 +146,13 @@ public class Network {
                                 System.exit(-1);
                             }
                         } catch (IOException ioException) {
+                            LOGGER.error(ioException.toString());
                             ioException.printStackTrace();
                         }
                     });
                 }
             }
-            System.out.println("Receiver остановлен");
+            LOGGER.info("Receiver остановлен");
         });
         receiver.setDaemon(true);
         receiver.start();

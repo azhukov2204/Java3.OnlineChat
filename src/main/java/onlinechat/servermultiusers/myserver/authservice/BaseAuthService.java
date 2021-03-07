@@ -9,7 +9,7 @@ public class BaseAuthService implements AuthService {
 
     private Connection connection;
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
     @Override
     public synchronized String getNickNameByLoginAndPassword(String login, String password) throws SQLException {

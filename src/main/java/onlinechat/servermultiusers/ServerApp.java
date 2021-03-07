@@ -10,10 +10,11 @@ import java.sql.SQLException;
 public class ServerApp {
     private static final int DEFAULT_PORT=8081;
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
     public static void main(String[] args) {
         try {
+            LOGGER.info("Запуск сервера");
             MyServer myServer = new MyServer(DEFAULT_PORT);
             myServer.startMyServer();
         } catch (IOException|ClassNotFoundException| SQLException e) {
@@ -21,6 +22,9 @@ public class ServerApp {
             LOGGER.error(e.toString());
             e.printStackTrace();
             System.exit(-1);
+        }
+        finally {
+            LOGGER.info("Сервер остановлен");
         }
 
     }

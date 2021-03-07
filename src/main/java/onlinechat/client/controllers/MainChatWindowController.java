@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,7 @@ import java.util.Date;
 
 
 public class MainChatWindowController {
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
 
     private Network network;
     private ChatClientApp chatClientApp;
@@ -110,6 +113,8 @@ public class MainChatWindowController {
                     network.sendPrivateMessage(selectedNickName, String.format("Приватное сообщение для %s: %s", selectedNickName, message));
                 }
             } catch (IOException e) {
+                LOGGER.error("Ошибка при отправке сообщения");
+                LOGGER.error(e.toString());
                 e.printStackTrace();
             }
             sendMessageText.clear();
@@ -167,7 +172,8 @@ public class MainChatWindowController {
         try {
             chatClientApp.createAndStartChangeNickNameWindow();
         } catch (IOException e) {
-            System.out.println("Не удалось запустить окно для смены ника");
+            LOGGER.error("Не удалось запустить окно для смены ника");
+            LOGGER.error(e.toString());
             e.printStackTrace();
         }
     }
