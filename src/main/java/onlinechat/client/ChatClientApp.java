@@ -58,7 +58,7 @@ public class ChatClientApp extends Application {
         AuthWindowController authWindowController = authWindowLoader.getController();
         authWindowController.setNetwork(network);
         authWindowController.setChatClientApp(this);
-        network.connection();
+        //network.connection();
     }
 
     private void createMainChatWindow() throws IOException {

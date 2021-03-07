@@ -46,6 +46,7 @@ public class AuthWindowController {
             return;
         }
 
+        network.connection();
         String authErrorMessage;
         try {
             authErrorMessage = network.sendAuthCommand(login, password);

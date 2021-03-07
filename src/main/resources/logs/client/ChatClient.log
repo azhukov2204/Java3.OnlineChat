@@ -12,3 +12,67 @@
 2021-03-07 16:59:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
 2021-03-07 16:59:40|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата
 2021-03-07 16:59:49|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:90) - Запуск окна смены ника
+2021-03-07 17:03:39|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:03:39|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:03:40|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:03:41|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:45) - Введен пустой логин. Логин не может быть пустым
+2021-03-07 17:03:42|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:45) - Введен пустой логин. Логин не может быть пустым
+2021-03-07 17:06:50|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:06:50|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:06:51|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:06:55|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:82) - Соединение установлено
+2021-03-07 17:06:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата
+2021-03-07 17:06:58|WARN |Thread-3|onlinechat.client.models.Network (Network.java:138) - Соединение прервано
+2021-03-07 17:06:58|WARN |Thread-3|onlinechat.client.models.Network (Network.java:139) - java.net.SocketException: Connection reset
+2021-03-07 17:06:58|INFO |Thread-3|onlinechat.client.models.Network (Network.java:155) - Receiver остановлен
+2021-03-07 17:07:01|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:113) - Рестарт чата
+2021-03-07 17:07:01|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:07:01|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:07:09|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:07:09|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:07:13|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:07:13|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:07:19|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:07:19|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:07:29|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:82) - Соединение установлено
+2021-03-07 17:07:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата
+2021-03-07 17:08:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:08:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:08:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:08:34|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:08:34|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:08:39|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:08:39|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:08:48|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:08:48|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:08:49|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:08:52|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:82) - Соединение установлено
+2021-03-07 17:08:52|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата
+2021-03-07 17:09:10|WARN |Thread-3|onlinechat.client.models.Network (Network.java:138) - Соединение прервано
+2021-03-07 17:09:10|WARN |Thread-3|onlinechat.client.models.Network (Network.java:139) - java.net.SocketException: Connection reset
+2021-03-07 17:09:10|INFO |Thread-3|onlinechat.client.models.Network (Network.java:155) - Receiver остановлен
+2021-03-07 17:09:12|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:113) - Рестарт чата
+2021-03-07 17:09:12|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:09:12|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:09:20|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:09:20|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:09:23|WARN |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:54) - При вызове sendAuthCommand произошла SocketException
+2021-03-07 17:09:23|WARN |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:55) - java.net.SocketException: Connection reset by peer
+2021-03-07 17:09:31|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:09:31|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:09:46|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:82) - Соединение установлено
+2021-03-07 17:09:46|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата
+2021-03-07 17:11:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:11:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:11:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:12:07|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:12:07|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:12:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:34) - Запуск клиента
+2021-03-07 17:12:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:47) - Запуск окна аутентификации
+2021-03-07 17:12:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:65) - Создание основного окна чата
+2021-03-07 17:12:31|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:12:31|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:12:43|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:86) - Отсутствует подключение
+2021-03-07 17:12:43|WARN |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:87) - java.net.ConnectException: Connection refused: connect
+2021-03-07 17:12:50|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:82) - Соединение установлено
+2021-03-07 17:12:50|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:77) - Запуск чата

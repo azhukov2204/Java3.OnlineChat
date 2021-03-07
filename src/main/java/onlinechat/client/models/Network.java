@@ -87,9 +87,7 @@ public class Network {
             LOGGER.warn(e.toString());
             e.printStackTrace();
 
-            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Повторить попытку подключения?")).showAndWait().get() == MyAlert.yesButton) {
-                connection();
-            } else {
+            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Повторить попытку подключения?")).showAndWait().get() != MyAlert.yesButton) {
                 System.exit(-1);
             }
         }
