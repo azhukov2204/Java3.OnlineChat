@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ChatMessagesHistoryWriter {
+public class ChatMessagesHistoryWriterAndReader {
     private static final String FILENAME_PREFIX = "history_";
     private static final String FILENAME_POSTFIX = ".txt";
     private static final String DIRECTORY = "src/main/resources/chat_history/";
@@ -16,7 +16,7 @@ public class ChatMessagesHistoryWriter {
 
     private static final Logger LOGGER = LogManager.getLogger("clientLogs");
 
-    public ChatMessagesHistoryWriter(String login) {
+    public ChatMessagesHistoryWriterAndReader(String login) {
         String messagesHistoryFilename = FILENAME_PREFIX + login.toLowerCase() + FILENAME_POSTFIX;
         String messagesHistoryFullFilename = DIRECTORY + messagesHistoryFilename;
         messagesHistoryFile = new File(messagesHistoryFullFilename);

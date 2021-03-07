@@ -92,6 +92,9 @@ public class AuthWindowController {
             if (network.connection()) {
                 serverHostField.setDisable(true);
                 serverPortField.setDisable(true);
+                LOGGER.info("Запись строки подключения в файл");
+
+                chatClientApp.getLastSuccessConnectionAddressWriterAndReader().writeToFile(serverHost, serverPort);
             }
         }
     }
@@ -131,10 +134,36 @@ public class AuthWindowController {
         }
     }
 
+    public void fillConnectionAddress(String connectionString) {
+        String[] str = connectionString.split("\\|");
+        if (str.length == 2) { //если строка правильного формата
+            String host = str[0].trim();
+            String port = str[1].trim();
+            if (!host.isBlank()) { //Хост
+                serverHostField.setText(host);
+            }
+            if (!port.isBlank()) {
+                serverPortField.setText(port);
+            }
+        }
+    }
+
+
+    @FXML
+    void focusToPortField(ActionEvent event) {
+        serverPortField.requestFocus();
+    }
+
+    @FXML
+    void focusToLoginField(ActionEvent event) {
+        loginField.requestFocus();
+    }
 
     @FXML
     void focusToPasswordField(ActionEvent event) {
         passwordField.requestFocus();
     }
+
+
 
 }

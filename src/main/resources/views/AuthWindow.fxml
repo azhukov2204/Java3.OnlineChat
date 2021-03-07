@@ -38,15 +38,18 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="serverHostField" layoutX="190.0" layoutY="39.0" onAction="#focusToPasswordField" prefHeight="65.0" prefWidth="287.0" text="localhost">
+      <TextField fx:id="serverHostField" layoutX="190.0" layoutY="39.0" onAction="#focusToPortField" prefHeight="65.0" prefWidth="287.0" text="localhost">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField fx:id="serverPortField" layoutX="477.0" layoutY="39.0" prefHeight="65.0" prefWidth="96.0" text="8081">
+      <TextField fx:id="serverPortField" layoutX="477.0" layoutY="39.0" onAction="#focusToLoginField" prefHeight="65.0" prefWidth="96.0" text="8081">
          <font>
             <Font size="28.0" />
          </font></TextField>
-      <Label layoutX="120.0" layoutY="102.0" prefHeight="20.0" prefWidth="488.0" text="Если какое-то поле адреса не заполнено, то будет применено значение по-умолчанию" textFill="#ff0808" />
+      <Label layoutX="122.0" layoutY="102.0" prefHeight="20.0" prefWidth="519.0" text="Если какое-то поле адреса не заполнено, то будет применено значение по-умолчанию">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -4,7 +4,8 @@ import javafx.stage.Modality;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
 import onlinechat.client.controllers.NickNameChangeController;
-import onlinechat.client.models.ChatMessagesHistoryWriter;
+import onlinechat.client.models.ChatMessagesHistoryWriterAndReader;
+import onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader;
 import onlinechat.client.models.Network;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,8 @@ public class ChatClientApp extends Application {
     private Stage authWindowStage;
     private Stage nickNameChangeStage;
     private Network network;
-    private ChatMessagesHistoryWriter chatMessagesHistoryWriter;
+    private ChatMessagesHistoryWriterAndReader chatMessagesHistoryWriterAndReader;
+    private LastSuccessConnectionAddressWriterAndReader lastSuccessConnectionAddressWriterAndReader;
     private MainChatWindowController mainChatWindowController;
 
     private static final Logger LOGGER = LogManager.getLogger("clientLogs");
@@ -45,6 +47,7 @@ public class ChatClientApp extends Application {
 
     private void createAndStartAuthWindow() throws IOException {
         LOGGER.info("Запуск окна аутентификации");
+        lastSuccessConnectionAddressWriterAndReader = new LastSuccessConnectionAddressWriterAndReader();
         FXMLLoader authWindowLoader = new FXMLLoader();
         authWindowLoader.setLocation(ChatClientApp.class.getResource("../../views/AuthWindow.fxml"));
         Parent authWindowRoot = authWindowLoader.load();
@@ -58,7 +61,7 @@ public class ChatClientApp extends Application {
         AuthWindowController authWindowController = authWindowLoader.getController();
         authWindowController.setNetwork(network);
         authWindowController.setChatClientApp(this);
-        //network.connection();
+        authWindowController.fillConnectionAddress(lastSuccessConnectionAddressWriterAndReader.getConnectionStringFromFile());
     }
 
     private void createMainChatWindow() throws IOException {
@@ -75,7 +78,7 @@ public class ChatClientApp extends Application {
 
     public void startChat() {
         LOGGER.info("Запуск чата");
-        chatMessagesHistoryWriter = new ChatMessagesHistoryWriter(network.getUserLogin().toLowerCase()); //создаем логгер истории сообщений
+        chatMessagesHistoryWriterAndReader = new ChatMessagesHistoryWriterAndReader(network.getUserLogin().toLowerCase()); //создаем логгер истории сообщений
         authWindowStage.close();
         primaryStage.show();
         primaryStage.setTitle(network.getNickName());
@@ -83,7 +86,7 @@ public class ChatClientApp extends Application {
         network.setMainChatWindowController(mainChatWindowController);
         network.startReceiver();
         mainChatWindowController.setNetwork(network);
-        mainChatWindowController.addListMessages(chatMessagesHistoryWriter.getNMessagesFromFile(COUNT_OF_MESSAGES_FROM_FILE_TO_READ));
+        mainChatWindowController.addListMessages(chatMessagesHistoryWriterAndReader.getNMessagesFromFile(COUNT_OF_MESSAGES_FROM_FILE_TO_READ));
     }
 
     public void createAndStartChangeNickNameWindow() throws IOException {
@@ -115,7 +118,11 @@ public class ChatClientApp extends Application {
         createMainChatWindow(); //этот метод пересоздаст главное окно чата
     }
 
-    public ChatMessagesHistoryWriter getChatMessagesHistoryLogger() {
-        return chatMessagesHistoryWriter;
+    public ChatMessagesHistoryWriterAndReader getChatMessagesHistoryLogger() {
+        return chatMessagesHistoryWriterAndReader;
+    }
+
+    public LastSuccessConnectionAddressWriterAndReader getLastSuccessConnectionAddressWriterAndReader() {
+        return lastSuccessConnectionAddressWriterAndReader;
     }
 }
