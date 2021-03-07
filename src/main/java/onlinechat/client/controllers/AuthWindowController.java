@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import onlinechat.client.ChatClientApp;
 import onlinechat.client.models.MyAlert;
 import onlinechat.client.models.Network;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -102,7 +103,8 @@ public class AuthWindowController {
     private void tryAuthentication(String login, String password) {
         String authErrorMessage;
         try {
-            authErrorMessage = network.sendAuthCommand(login, password);
+            String hashMD5Password = DigestUtils.md5Hex(password);
+            authErrorMessage = network.sendAuthCommand(login, hashMD5Password);
         } catch (SocketException e) {
             LOGGER.warn("При вызове sendAuthCommand произошла SocketException");
             LOGGER.warn(e.toString());
@@ -163,7 +165,5 @@ public class AuthWindowController {
     void focusToPasswordField(ActionEvent event) {
         passwordField.requestFocus();
     }
-
-
 
 }
