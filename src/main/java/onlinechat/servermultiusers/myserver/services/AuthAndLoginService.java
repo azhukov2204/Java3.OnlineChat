@@ -1,8 +1,8 @@
-package onlinechat.servermultiusers.myserver.authservice;
+package onlinechat.servermultiusers.myserver.services;
 
 import java.sql.SQLException;
 
-public interface AuthService {
+public interface AuthAndLoginService {
     String getNickNameByLoginAndPassword(String login, String password) throws SQLException;
     void startAuthenticationService() throws ClassNotFoundException, SQLException;
     void endAuthenticationService() throws SQLException;

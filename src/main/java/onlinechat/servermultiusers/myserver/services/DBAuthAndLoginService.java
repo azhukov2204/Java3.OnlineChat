@@ -1,11 +1,11 @@
-package onlinechat.servermultiusers.myserver.authservice;
+package onlinechat.servermultiusers.myserver.services;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class BaseAuthService implements AuthService {
+public class DBAuthAndLoginService implements AuthAndLoginService {
 
     private Connection connection;
 

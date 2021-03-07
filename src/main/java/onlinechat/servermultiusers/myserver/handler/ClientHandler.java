@@ -1,7 +1,7 @@
 package onlinechat.servermultiusers.myserver.handler;
 
 import onlinechat.servermultiusers.myserver.MyServer;
-import onlinechat.servermultiusers.myserver.authservice.BaseAuthService;
+import onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ClientHandler {
     private final MyServer myServer;
     private final Socket clientSocket;
-    private final BaseAuthService baseAuthService;
+    private final DBAuthAndLoginService baseAuthService;
     private DataInputStream in;
     private DataOutputStream out;
 
@@ -39,7 +39,7 @@ public class ClientHandler {
 
     private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
-    public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
+    public ClientHandler(MyServer myServer, Socket clientSocket, DBAuthAndLoginService baseAuthService) {
         this.myServer = myServer;
         this.clientSocket = clientSocket;
         this.baseAuthService = baseAuthService;
