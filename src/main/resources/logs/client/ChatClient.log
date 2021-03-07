@@ -306,3 +306,179 @@
 2021-03-08 01:16:11|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
 2021-03-08 01:16:19|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
 2021-03-08 01:16:19|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:80) - Запуск чата
+2021-03-08 01:17:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:17:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:17:55|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:68) - Создание основного окна чата
+2021-03-08 01:19:41|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:19:41|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:19:41|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:68) - Создание основного окна чата
+2021-03-08 01:20:26|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:20:26|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:20:27|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:68) - Создание основного окна чата
+2021-03-08 01:22:52|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:22:52|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:22:52|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:68) - Создание основного окна чата
+2021-03-08 01:23:30|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:23:30|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:23:30|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:68) - Создание основного окна чата
+2021-03-08 01:23:51|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:23:51|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:23:51|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:23:51|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:23:57|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:23:57|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:80) - Запуск чата
+2021-03-08 01:23:59|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:93) - Запуск окна смены ника
+2021-03-08 01:24:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:93) - Запуск окна смены ника
+2021-03-08 01:26:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:36) - Запуск клиента
+2021-03-08 01:26:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:49) - Запуск окна аутентификации
+2021-03-08 01:26:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:69) - Создание основного окна чата
+2021-03-08 01:26:17|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:26:17|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:26:17|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:26:17|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:26:17|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:81) - Запуск чата
+2021-03-08 01:26:22|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:94) - Запуск окна смены ника
+2021-03-08 01:28:02|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:28:02|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:28:02|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:28:07|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:28:07|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:28:07|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:28:07|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:28:07|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:28:09|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:95) - Запуск окна смены ника
+2021-03-08 01:28:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:28:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:28:25|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:28:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:28:29|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:28:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:28:29|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:28:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:28:31|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:95) - Запуск окна смены ника
+2021-03-08 01:28:51|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:28:51|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:28:52|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:29:10|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:29:10|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:29:10|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:29:10|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:29:10|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:29:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:95) - Запуск окна смены ника
+2021-03-08 01:29:18|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:95) - Запуск окна смены ника
+2021-03-08 01:29:53|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:29:53|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:29:53|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:30:02|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:30:02|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:30:02|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:30:02|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:30:02|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:30:03|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:95) - Запуск окна смены ника
+2021-03-08 01:30:40|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:30:40|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:30:40|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:30:45|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:30:45|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:30:45|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:30:45|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:30:45|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:32:34|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:32:34|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:32:35|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:43:48|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:43:48|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:43:48|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:43:50|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:155) - Регистрация нового пользователя
+2021-03-08 01:43:51|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:155) - Регистрация нового пользователя
+2021-03-08 01:43:52|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:155) - Регистрация нового пользователя
+2021-03-08 01:43:53|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:155) - Регистрация нового пользователя
+2021-03-08 01:44:02|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:02|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:44:02|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:96) - Запись строки подключения в файл
+2021-03-08 01:44:02|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Введен пустой логин. Логин не может быть пустым
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Введен пустой логин. Логин не может быть пустым
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:29|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Введен пустой логин. Логин не может быть пустым
+2021-03-08 01:44:30|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:30|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Введен пустой логин. Логин не может быть пустым
+2021-03-08 01:44:30|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:61) - Попытка аутентификации
+2021-03-08 01:44:30|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Введен пустой логин. Логин не может быть пустым
+2021-03-08 01:49:49|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:49:49|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:49:50|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:50:27|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:50:27|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:50:27|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:51:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:51:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:51:11|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:51:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:13|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:13|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:16|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:20|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:24|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:26|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:27|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:27|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:51:27|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:53:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:53:04|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:53:08|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:08|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:11|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:11|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:11|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:12|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:13|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:14|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:15|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:182) - ВВод текста
+2021-03-08 01:53:17|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:66) - Попытка аутентификации
+2021-03-08 01:53:17|INFO |JavaFX Application Thread|onlinechat.client.models.Network (Network.java:94) - Соединение установлено
+2021-03-08 01:53:17|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:101) - Запись строки подключения в файл
+2021-03-08 01:53:17|INFO |JavaFX Application Thread|onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader (LastSuccessConnectionAddressWriterAndReader.java:34) - Проверка, существует ли файл строки подключения
+2021-03-08 01:53:18|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:82) - Запуск чата
+2021-03-08 01:53:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:37) - Запуск клиента
+2021-03-08 01:53:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:50) - Запуск окна аутентификации
+2021-03-08 01:53:29|INFO |JavaFX Application Thread|onlinechat.client.ChatClientApp (ChatClientApp.java:70) - Создание основного окна чата
+2021-03-08 01:53:34|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:160) - Регистрация нового пользователя
+2021-03-08 01:53:34|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:160) - Регистрация нового пользователя
+2021-03-08 01:53:34|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:160) - Регистрация нового пользователя
+2021-03-08 01:53:35|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:160) - Регистрация нового пользователя
+2021-03-08 01:53:35|INFO |JavaFX Application Thread|onlinechat.client.controllers.AuthWindowController (AuthWindowController.java:160) - Регистрация нового пользователя

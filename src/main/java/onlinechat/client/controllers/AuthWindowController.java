@@ -5,6 +5,7 @@ import java.net.SocketException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -42,6 +43,10 @@ public class AuthWindowController {
 
     @FXML
     private TextField serverPortField;
+
+    @FXML
+    private Button enterButton;
+
 
     @FXML
     void initialize() {
@@ -150,6 +155,11 @@ public class AuthWindowController {
         }
     }
 
+    @FXML
+    void doRegisterNewUser(ActionEvent event) {
+        LOGGER.info("Регистрация нового пользователя");
+    }
+
 
     @FXML
     void focusToPortField(ActionEvent event) {
@@ -164,6 +174,12 @@ public class AuthWindowController {
     @FXML
     void focusToPasswordField(ActionEvent event) {
         passwordField.requestFocus();
+    }
+
+
+    @FXML
+    void setActiveEnterButton() {
+        enterButton.setDisable(loginField.getText().trim().isBlank()); //если что-то введено, то кнопку делаем активной
     }
 
 }

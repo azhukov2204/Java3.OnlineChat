@@ -1,6 +1,7 @@
 package onlinechat.client;
 
 import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
 import onlinechat.client.controllers.NickNameChangeController;
@@ -62,6 +63,7 @@ public class ChatClientApp extends Application {
         authWindowController.setNetwork(network);
         authWindowController.setChatClientApp(this);
         authWindowController.fillConnectionAddress(lastSuccessConnectionAddressWriterAndReader.getConnectionStringFromFile());
+        authWindowStage.resizableProperty().setValue(false);
     }
 
     private void createMainChatWindow() throws IOException {
@@ -102,6 +104,7 @@ public class ChatClientApp extends Application {
         NickNameChangeController nickNameChangeController = nickNameChangeLoader.getController();
         nickNameChangeController.setNetwork(network);
         nickNameChangeStage.show();
+        nickNameChangeStage.resizableProperty().setValue(false);
 
     }
 
