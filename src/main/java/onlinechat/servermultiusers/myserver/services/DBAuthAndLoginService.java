@@ -45,7 +45,7 @@ public class DBAuthAndLoginService implements AuthAndLoginService {
     }
 
     @Override
-    public String registrationNewUser(String login, String nickName, String md5password) throws SQLException {
+    public synchronized String registrationNewUser(String login, String nickName, String md5password) throws SQLException {
         if (isLoginBusy(login)) {
             return String.format("Логин \"%s\" занят", login);
         } else if (isNickNameBusy(nickName)) {

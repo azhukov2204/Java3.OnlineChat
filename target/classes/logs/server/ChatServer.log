@@ -947,3 +947,119 @@
 2021-03-08 17:44:21|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент null
 2021-03-08 17:44:21|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
 
+2021-03-08 17:52:33|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:17) - Запуск сервера
+2021-03-08 17:52:33|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 17:52:33|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 17:52:33|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 17:52:38|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 17:52:38|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 17:52:38|INFO |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс
+2021-03-08 17:52:57|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 17:52:59|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 17:53:12|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 17:53:12|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 17:53:14|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 17:53:14|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 17:53:20|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 17:53:20|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 17:53:49|WARN |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:62) - java.net.SocketException: Connection reset
+2021-03-08 17:53:49|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент null
+2021-03-08 17:53:49|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+
+2021-03-08 18:30:39|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:17) - Запуск сервера
+2021-03-08 18:30:39|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 18:30:39|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 18:30:39|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 18:30:44|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 18:30:44|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 18:30:44|INFO |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс
+2021-03-08 18:30:59|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 18:30:59|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 18:31:21|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 18:31:26|WARN |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:62) - java.net.SocketException: Connection reset
+2021-03-08 18:31:26|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент null
+2021-03-08 18:31:26|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+
+2021-03-08 18:31:46|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 18:31:46|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 18:31:46|INFO |Thread-1|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс
+2021-03-08 18:32:01|INFO |Thread-1|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 18:32:01|INFO |Thread-1|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 18:32:02|INFO |Thread-1|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 18:32:02|INFO |Thread-1|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 18:32:09|WARN |Thread-1|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:62) - java.net.SocketException: Connection reset
+2021-03-08 18:32:09|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент null
+2021-03-08 18:32:09|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+
+2021-03-08 22:31:50|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:31) - Сервер остановлен
+2021-03-08 22:32:22|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:21) - Запуск сервера
+2021-03-08 22:32:22|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:32:22|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:32:22|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:32:41|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:19) - as
+2021-03-08 22:32:41|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:21) - Запуск сервера
+2021-03-08 22:32:42|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:32:42|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:32:42|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:33:15|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:22) - Запуск сервера
+2021-03-08 22:33:15|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:33:15|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:33:15|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:19) - Сервер зарущен с аргументами
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:20) - 123
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:22) - Запуск сервера
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:33:35|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:19) - Сервер зарущен с аргументами
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:20) - 123
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:22) - Запуск сервера
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:38:05|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:38:22|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:22) - Запуск сервера
+2021-03-08 22:38:22|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:38:22|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:38:22|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:38:34|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:22) - Запуск сервера
+2021-03-08 22:38:34|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:38:34|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:38:34|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:40:24|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:19) - Номер порта передан в аргументах: 8082
+2021-03-08 22:40:24|INFO |main|onlinechat.servermultiusers.ServerApp (ServerApp.java:24) - Запуск сервера на порту 8082
+2021-03-08 22:40:24|INFO |main|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:90) - Сервис аутентификации запущен
+2021-03-08 22:40:24|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:31) - Сервер запущен
+2021-03-08 22:40:24|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:40:49|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 22:40:49|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:40:49|INFO |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс
+2021-03-08 22:41:08|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:78) - Проверка занятоскти логина
+2021-03-08 22:41:08|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 22:41:13|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:62) - Подключился клиент Андрей
+2021-03-08 22:41:13|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+Андрей
+
+2021-03-08 22:41:13|INFO |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:93) - Снимаем с сокета ограничение по тайм-ауту
+2021-03-08 22:41:35|INFO |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:187) - Попытка смены ника с Андрей на Эндрю
+2021-03-08 22:41:35|INFO |Thread-0|onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService (DBAuthAndLoginService.java:69) - Проверка занятоскти ника
+2021-03-08 22:41:53|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 22:41:53|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:41:53|INFO |Thread-1|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс
+2021-03-08 22:41:57|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:62) - Подключился клиент Ваня
+2021-03-08 22:41:57|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+Эндрю
+Ваня
+
+2021-03-08 22:41:57|INFO |Thread-1|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:93) - Снимаем с сокета ограничение по тайм-ауту
+2021-03-08 22:42:22|WARN |Thread-0|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:62) - java.net.SocketException: Connection reset
+2021-03-08 22:42:22|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент Эндрю
+2021-03-08 22:42:22|INFO |Thread-0|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+Ваня
+
+2021-03-08 22:42:36|WARN |Thread-1|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:62) - java.net.SocketException: Connection reset
+2021-03-08 22:42:36|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:70) - Отключился клиент Ваня
+2021-03-08 22:42:36|INFO |Thread-1|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:83) - Список активных клиентов:
+
+2021-03-08 22:42:43|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:36) - Клиент подключился, создаем указатель
+2021-03-08 22:42:43|INFO |main|onlinechat.servermultiusers.myserver.MyServer (MyServer.java:34) - Ожидаем подключения пользователя
+2021-03-08 22:42:43|INFO |Thread-2|onlinechat.servermultiusers.myserver.handler.ClientHandler (ClientHandler.java:77) - Устанавливаем тайм-аут сокета 120000 мс

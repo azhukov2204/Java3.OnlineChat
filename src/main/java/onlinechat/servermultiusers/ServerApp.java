@@ -14,8 +14,15 @@ public class ServerApp {
 
     public static void main(String[] args) {
         try {
-            LOGGER.info("Запуск сервера");
-            MyServer myServer = new MyServer(DEFAULT_PORT);
+            int port;
+            if (args.length>0 && args[0].matches("^\\d+$")) {
+                LOGGER.info("Номер порта передан в аргументах: " + args[0]);
+                port = Integer.parseInt(args[0]);
+            } else {
+                port = DEFAULT_PORT;
+            }
+            LOGGER.info("Запуск сервера на порту " + port);
+            MyServer myServer = new MyServer(port);
             myServer.startMyServer();
         } catch (IOException|ClassNotFoundException| SQLException e) {
             LOGGER.error("Произошла ошибка при запуске сервера");
