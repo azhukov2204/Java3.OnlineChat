@@ -1,7 +1,6 @@
 package onlinechat.client;
 
 import javafx.stage.Modality;
-import javafx.stage.StageStyle;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
 import onlinechat.client.controllers.NickNameChangeController;
@@ -127,9 +126,14 @@ public class ChatClientApp extends Application {
         registrationWindowStage.initModality(Modality.WINDOW_MODAL);
         registrationWindowStage.initOwner(authWindowStage);
         RegistrationWindowController registrationWindowController = registrationWindowLoader.getController();
+        registrationWindowController.setNetwork(network);
+        registrationWindowController.setChatClientApp(this);
         registrationWindowStage.show();
         registrationWindowStage.resizableProperty().setValue(false);
+    }
 
+    public void closeRegistrationWindow() {
+        registrationWindowStage.close();
     }
 
 

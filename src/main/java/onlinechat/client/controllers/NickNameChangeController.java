@@ -24,6 +24,7 @@ public class NickNameChangeController {
 
     @FXML
     void changeNickName() {
+        LOGGER.info("Попытка смены имени пользователя");
         String newNickName = newNickNameField.getText().trim();
 
         if (newNickName.isBlank()) {

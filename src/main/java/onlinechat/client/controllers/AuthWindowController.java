@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import onlinechat.client.ChatClientApp;
-import onlinechat.client.models.MyAlert;
+import onlinechat.client.models.YesNoAlert;
 import onlinechat.client.models.Network;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +46,6 @@ public class AuthWindowController {
 
     @FXML
     private Button enterButton;
-
 
     @FXML
     void initialize() {
@@ -86,13 +85,13 @@ public class AuthWindowController {
             if (!serverHost.isBlank()) {
                 network.setServerHost(serverHost);
             } else {
-                network.setServerHost(); //установка дефолтного значения
+                network.setServerHost(); //установка дефолтного значения, если ничего не введено
             }
 
             if (!serverPort.isBlank()) {
                 network.setServerPort(Integer.parseInt(serverPort));
             } else {
-                network.setServerPort(); //установка дефолтного значения
+                network.setServerPort(); //установка дефолтного значения, если ничего не введено
             }
 
             if (network.connection()) {
@@ -125,7 +124,7 @@ public class AuthWindowController {
         if (authErrorMessage == null) {
             chatClientApp.startChat();
         } else if (authErrorMessage.equals("SocketException")) {
-            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение, возможно из-за длительного бездействия", "Повторить попытку подключения?")).showAndWait().get() == MyAlert.yesButton) {
+            if ((new YesNoAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение, возможно из-за длительного бездействия", "Повторить попытку подключения?", true)).showAndWait().get() == YesNoAlert.yesButton) {
                 network.closeConnection();
                 serverHostField.setDisable(false);
                 serverPortField.setDisable(false);
@@ -158,12 +157,15 @@ public class AuthWindowController {
     @FXML
     void doRegisterNewUser(ActionEvent event) {
         LOGGER.info("Нажата кнопка регистрации нового пользователя");
-        try {
-            chatClientApp.createAndStartRegistrationWindow();
-        } catch (IOException e) {
-            LOGGER.error("Не удалось запустить окно регистрации нового пользователя");
-            LOGGER.error(e.toString());
-            e.printStackTrace();
+        tryConnection();
+        if (network.isConnected()) {
+            try {
+                chatClientApp.createAndStartRegistrationWindow();
+            } catch (IOException e) {
+                LOGGER.error("Не удалось запустить окно регистрации нового пользователя");
+                LOGGER.error(e.toString());
+                e.printStackTrace();
+            }
         }
     }
 

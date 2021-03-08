@@ -31,6 +31,10 @@ public class Network {
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + error message
 
+    private static final String REGISTER_NEW_USER_CMD_PREFIX = "/registerNewUser"; // + login + nickname + password
+    private static final String REGISTER_NEW_USER_OK_CMD_PREFIX = "/registerNewUserOK"; //
+    private static final String REGISTER_NEW_USER_ERR_CMD_PREFIX = "/registerNewUserErr"; // + error message
+
 
     private String serverHost;
     private int serverPort;
@@ -98,7 +102,7 @@ public class Network {
             LOGGER.warn(e.toString());
             e.printStackTrace();
 
-            if ((new MyAlert(Alert.AlertType.ERROR, "Невозможно установить соединение", "Невозможно установить соединение", "Повторить попытку подключения? \nПроверьте корректность указанного адреса и порта сервера")).showAndWait().get() != MyAlert.yesButton) {
+            if ((new YesNoAlert(Alert.AlertType.ERROR, "Невозможно установить соединение", "Невозможно установить соединение", "Повторить попытку подключения? \nПроверьте корректность указанного адреса и порта сервера", true)).showAndWait().get() != YesNoAlert.yesButton) {
                 System.exit(-1);
             }
         }
@@ -165,7 +169,7 @@ public class Network {
                     e.printStackTrace();
                     Platform.runLater(() -> {
                         try {
-                            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Сеанс завершен. Повторить вход в чат? Будет запущен новый сеанс")).showAndWait().get() == MyAlert.yesButton) {
+                            if ((new YesNoAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Сеанс завершен. Повторить вход в чат? Будет запущен новый сеанс", true)).showAndWait().get() == YesNoAlert.yesButton) {
                                 chatClientApp.restartChat();
                             } else {
                                 System.exit(-1);
@@ -215,5 +219,17 @@ public class Network {
         out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_CMD_PREFIX, newNickName));
     }
 
+    public String sendRegisterNewUserCommand(String newUserLogin, String newNickName, String md5Password) throws IOException {
+        LOGGER.info("Отправка на сервер команды регистрации нового пользователя");
+        out.writeUTF(String.format("%s;%s;%s;%s", REGISTER_NEW_USER_CMD_PREFIX, newUserLogin, newNickName, md5Password));
+        String response = in.readUTF();
+
+        if (response.startsWith(REGISTER_NEW_USER_OK_CMD_PREFIX)) {
+            return null;
+        } else {
+            return response.split(";", 2)[1];
+        }
+
+    }
 
 }

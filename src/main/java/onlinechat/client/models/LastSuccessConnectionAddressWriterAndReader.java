@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class LastSuccessConnectionAddressWriterAndReader {
     private static final String FILENAME = "connection_string.txt";

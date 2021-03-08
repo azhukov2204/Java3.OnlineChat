@@ -44,12 +44,42 @@ public class DBAuthAndLoginService implements AuthAndLoginService {
         }
     }
 
+    @Override
+    public String registrationNewUser(String login, String nickName, String md5password) throws SQLException {
+        if (isLoginBusy(login)) {
+            return String.format("Логин \"%s\" занят", login);
+        } else if (isNickNameBusy(nickName)) {
+            return String.format("Имя пользователя \"%s\" занято", nickName);
+        } else {
+            PreparedStatement addNewUser = connection.prepareStatement("INSERT INTO USERS (LOGIN, NICKNAME, PASSWORD) VALUES (UPPER(?), ?, ?);");
+            addNewUser.setString(1, login.toUpperCase());
+            addNewUser.setString(2, nickName);
+            addNewUser.setString(3, md5password);
+            int result = addNewUser.executeUpdate();
+            LOGGER.debug(addNewUser.toString());
+            if (result!=0) {
+                return  null;
+            } else {
+                return "Не удалось выполнить добавление пользователя";
+            }
+        }
+    }
+
     private synchronized boolean isNickNameBusy(String newNickName) throws SQLException {
+        LOGGER.info("Проверка занятоскти ника");
         PreparedStatement checkNickNameStatement = connection.prepareStatement("SELECT * FROM USERS WHERE NICKNAME = ?;");
         checkNickNameStatement.setString(1, newNickName);
         ResultSet resultSet = checkNickNameStatement.executeQuery();
-        return resultSet.next();
 
+        return resultSet.next();
+    }
+
+    private synchronized boolean isLoginBusy(String newLogin) throws SQLException {
+        LOGGER.info("Проверка занятоскти логина");
+        PreparedStatement checkLoginStatement = connection.prepareStatement("SELECT * FROM USERS WHERE UPPER(LOGIN) = UPPER(?);");
+        checkLoginStatement.setString(1, newLogin.toUpperCase());
+        ResultSet resultSet = checkLoginStatement.executeQuery();
+        return resultSet.next();
     }
 
     @Override
