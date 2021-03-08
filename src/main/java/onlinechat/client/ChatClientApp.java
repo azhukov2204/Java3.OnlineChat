@@ -5,6 +5,7 @@ import javafx.stage.StageStyle;
 import onlinechat.client.controllers.AuthWindowController;
 import onlinechat.client.controllers.MainChatWindowController;
 import onlinechat.client.controllers.NickNameChangeController;
+import onlinechat.client.controllers.RegistrationWindowController;
 import onlinechat.client.models.ChatMessagesHistoryWriterAndReader;
 import onlinechat.client.models.LastSuccessConnectionAddressWriterAndReader;
 import onlinechat.client.models.Network;
@@ -25,6 +26,7 @@ public class ChatClientApp extends Application {
     private Stage primaryStage;
     private Stage authWindowStage;
     private Stage nickNameChangeStage;
+    private Stage registrationWindowStage;
     private Network network;
     private ChatMessagesHistoryWriterAndReader chatMessagesHistoryWriterAndReader;
     private LastSuccessConnectionAddressWriterAndReader lastSuccessConnectionAddressWriterAndReader;
@@ -112,6 +114,22 @@ public class ChatClientApp extends Application {
         nickNameChangeStage.close();
         LOGGER.info("Новое имя пользователя " + network.getNickName());
         primaryStage.setTitle(network.getNickName());
+    }
+
+    public void createAndStartRegistrationWindow() throws IOException {
+        LOGGER.info("Запуск окна регистрации нового пользователя");
+        FXMLLoader registrationWindowLoader = new FXMLLoader();
+        registrationWindowLoader.setLocation(ChatClientApp.class.getResource("../../views/RegistrationWindow.fxml"));
+        Parent registrationWindowRoot = registrationWindowLoader.load();
+        registrationWindowStage = new Stage();
+        registrationWindowStage.setTitle("Регистрация нового пользователя");
+        registrationWindowStage.setScene(new Scene(registrationWindowRoot));
+        registrationWindowStage.initModality(Modality.WINDOW_MODAL);
+        registrationWindowStage.initOwner(authWindowStage);
+        RegistrationWindowController registrationWindowController = registrationWindowLoader.getController();
+        registrationWindowStage.show();
+        registrationWindowStage.resizableProperty().setValue(false);
+
     }
 
 

@@ -157,7 +157,14 @@ public class AuthWindowController {
 
     @FXML
     void doRegisterNewUser(ActionEvent event) {
-        LOGGER.info("Регистрация нового пользователя");
+        LOGGER.info("Нажата кнопка регистрации нового пользователя");
+        try {
+            chatClientApp.createAndStartRegistrationWindow();
+        } catch (IOException e) {
+            LOGGER.error("Не удалось запустить окно регистрации нового пользователя");
+            LOGGER.error(e.toString());
+            e.printStackTrace();
+        }
     }
 
 
