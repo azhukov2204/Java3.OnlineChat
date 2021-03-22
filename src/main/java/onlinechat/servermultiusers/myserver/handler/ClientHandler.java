@@ -1,7 +1,7 @@
 package onlinechat.servermultiusers.myserver.handler;
 
 import onlinechat.servermultiusers.myserver.MyServer;
-import onlinechat.servermultiusers.myserver.authservice.BaseAuthService;
+import onlinechat.servermultiusers.myserver.services.AuthAndLoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ClientHandler {
     private final MyServer myServer;
     private final Socket clientSocket;
-    private final BaseAuthService baseAuthService;
+    private final AuthAndLoginService authAndLoginService;
     private DataInputStream in;
     private DataOutputStream out;
 
@@ -37,12 +37,16 @@ public class ClientHandler {
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + newNickName
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final String REGISTER_NEW_USER_CMD_PREFIX = "/registerNewUser"; // + login + nickname + password
+    private static final String REGISTER_NEW_USER_OK_CMD_PREFIX = "/registerNewUserOK"; //
+    private static final String REGISTER_NEW_USER_ERR_CMD_PREFIX = "/registerNewUserErr"; // + error message
 
-    public ClientHandler(MyServer myServer, Socket clientSocket, BaseAuthService baseAuthService) {
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
+
+    public ClientHandler(MyServer myServer, Socket clientSocket, AuthAndLoginService authAndLoginService) {
         this.myServer = myServer;
         this.clientSocket = clientSocket;
-        this.baseAuthService = baseAuthService;
+        this.authAndLoginService = authAndLoginService;
     }
 
     public void startHandler() throws IOException {
@@ -51,7 +55,7 @@ public class ClientHandler {
 
         new Thread(() -> {
             try {
-                authenticationAndSubscribe();
+                authenticationOrRegistrationAndSubscribe();
                 startReceiver();
             } catch (IOException | SQLException e) {
                 //e.printStackTrace();
@@ -68,7 +72,7 @@ public class ClientHandler {
         }).start();
     }
 
-    private void authenticationAndSubscribe() throws IOException, SQLException {
+    private void authenticationOrRegistrationAndSubscribe() throws IOException, SQLException {
         String message;
         LOGGER.info(String.format("Устанавливаем тайм-аут сокета %d мс", SOCKET_TIMEOUT_MS));
         clientSocket.setSoTimeout(SOCKET_TIMEOUT_MS);
@@ -77,9 +81,11 @@ public class ClientHandler {
         do {
             message = in.readUTF();
             if (message.startsWith(AUTH_CMD_PREFIX)) {
-                isAuthenticationSuccessful = isAuthenticationSuccessful(message);
+                isAuthenticationSuccessful = doAuthentication(message);
+            } else if (message.startsWith(REGISTER_NEW_USER_CMD_PREFIX)) {
+                doRegistration(message);
             } else {
-                out.writeUTF(AUTHERR_CMD_PREFIX + ";Ошибка авторизации");
+                out.writeUTF(AUTHERR_CMD_PREFIX + ";Неизвестная команда");
             }
         } while (!isAuthenticationSuccessful);
 
@@ -88,7 +94,7 @@ public class ClientHandler {
         clientSocket.setSoTimeout(0);   //после прохождения аутентификации снимаем ограничение по тайм-ауту
     }
 
-    private boolean isAuthenticationSuccessful(String message) throws IOException, SQLException {
+    private boolean doAuthentication(String message) throws IOException, SQLException {
         String[] authMessageParts = message.split(";", 3);
         if (authMessageParts.length != 3) {
             out.writeUTF(AUTHERR_CMD_PREFIX + ";Неверная команда авторизации");
@@ -97,7 +103,7 @@ public class ClientHandler {
         String enteredLogin = authMessageParts[1];
         String enteredPassword = authMessageParts[2];
 
-        nickName = baseAuthService.getNickNameByLoginAndPassword(enteredLogin, enteredPassword);
+        nickName = authAndLoginService.getNickNameByLoginAndPassword(enteredLogin, enteredPassword);
 
         if (nickName != null) {
             if (myServer.isNickNameBusy(nickName)) {
@@ -112,6 +118,26 @@ public class ClientHandler {
             out.writeUTF(AUTHERR_CMD_PREFIX + ";Введены неверные логин или пароль");
             return false;
         }
+    }
+
+    private void doRegistration(String message) throws IOException, SQLException {
+        String[] registrationMessageParts = message.split(";", 4);
+        if (registrationMessageParts.length != 4) {
+            out.writeUTF(REGISTER_NEW_USER_ERR_CMD_PREFIX + ";Неверная команда регистрации нового пользователя");
+            return;
+        }
+        String newUserLogin = registrationMessageParts[1];
+        String newUserNickName = registrationMessageParts[2];
+        String newUserPassword = registrationMessageParts[3];
+
+        String errorMessage = authAndLoginService.registrationNewUser(newUserLogin, newUserNickName, newUserPassword);
+
+        if (errorMessage != null) {
+            out.writeUTF(REGISTER_NEW_USER_ERR_CMD_PREFIX + ";" + errorMessage);
+        } else {
+            out.writeUTF(REGISTER_NEW_USER_OK_CMD_PREFIX);
+        }
+
     }
 
     private void startReceiver() throws IOException {
@@ -160,7 +186,7 @@ public class ClientHandler {
     public void changeNickName(String newNickName) throws IOException {
         LOGGER.info(String.format("Попытка смены ника с %s на %s", nickName, newNickName));
         try {
-            if (baseAuthService.changeNickName(login, newNickName)) {
+            if (authAndLoginService.changeNickName(login, newNickName)) {
                 out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_OK_CMD_PREFIX, newNickName));
                 myServer.sendBroadcastSystemMessage(String.format("Пользователь %s изменил свой NickName на: %s", nickName, newNickName));
                 nickName = newNickName;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="502.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="onlinechat.client.controllers.RegistrationWindowController">
+   <children>
+      <TextField fx:id="loginField" layoutX="29.0" layoutY="44.0" onAction="#focusToNickNameField" prefHeight="59.0" prefWidth="373.0" promptText="Введите логин">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="nickNameField" layoutX="29.0" layoutY="143.0" onAction="#focusToPasswordField" prefHeight="59.0" prefWidth="373.0" promptText="Введите имя пользователя">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="29.0" layoutY="240.0" onAction="#focusToRepeatPasswordField" prefHeight="59.0" prefWidth="373.0" promptText="Введите пароль">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="29.0" layoutY="14.0" prefHeight="30.0" prefWidth="373.0" text="Введите логин:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="103.0" prefHeight="40.0" prefWidth="373.0" text="Введите имя пользователя (NickName):">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="200.0" prefHeight="40.0" prefWidth="373.0" text="Придумайте и введите пароль:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="registerButton" disable="true" layoutX="28.0" layoutY="423.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="65.0" prefWidth="373.0" text="Зарегистрироваться">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="299.0" prefHeight="40.0" prefWidth="373.0" text="Введите повторно пароль:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="repeatPasswordField" layoutX="29.0" layoutY="339.0" onAction="#registerNewUser" prefHeight="59.0" prefWidth="373.0" promptText="Повторите ввод пароля">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </PasswordField>
+   </children>
+</AnchorPane>

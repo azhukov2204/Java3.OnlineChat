@@ -1,6 +1,7 @@
 package onlinechat.servermultiusers.myserver;
 
-import onlinechat.servermultiusers.myserver.authservice.BaseAuthService;
+import onlinechat.servermultiusers.myserver.services.AuthAndLoginService;
+import onlinechat.servermultiusers.myserver.services.DBAuthAndLoginService;
 import onlinechat.servermultiusers.myserver.handler.ClientHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,15 +15,15 @@ import java.util.List;
 
 public class MyServer {
     private final ServerSocket serverSocket;
-    private final BaseAuthService baseAuthService;
+    private final AuthAndLoginService authAndLoginService;
     private final List<ClientHandler> activeClients = new ArrayList<>();
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("serverLogs");
 
     public MyServer(int port) throws IOException, ClassNotFoundException, SQLException {
         serverSocket = new ServerSocket(port);
-        baseAuthService = new BaseAuthService();
-        baseAuthService.startAuthenticationService();
+        authAndLoginService = new DBAuthAndLoginService();
+        authAndLoginService.startAuthenticationService();
     }
 
 
@@ -33,15 +34,15 @@ public class MyServer {
                 LOGGER.info("Ожидаем подключения пользователя");
                 Socket clientSocket = serverSocket.accept();
                 LOGGER.info("Клиент подключился, создаем указатель");
-                new ClientHandler(this, clientSocket, baseAuthService).startHandler();
+                new ClientHandler(this, clientSocket, authAndLoginService).startHandler();
             }
         } catch (IOException e) {
             LOGGER.error("Ошибка при подключении клиента");
             LOGGER.error(e.toString());
             e.printStackTrace();
         } finally {
-            if (baseAuthService != null) {
-                baseAuthService.endAuthenticationService();
+            if (authAndLoginService != null) {
+                authAndLoginService.endAuthenticationService();
             }
             LOGGER.info("Сервер остановлен");
         }

@@ -5,10 +5,13 @@ import onlinechat.client.models.Network;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class NickNameChangeController {
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
     private Network network;
 
     @FXML
@@ -21,6 +24,7 @@ public class NickNameChangeController {
 
     @FXML
     void changeNickName() {
+        LOGGER.info("Попытка смены имени пользователя");
         String newNickName = newNickNameField.getText().trim();
 
         if (newNickName.isBlank()) {

@@ -4,6 +4,8 @@ import javafx.scene.control.Alert;
 import onlinechat.client.ChatClientApp;
 import onlinechat.client.controllers.MainChatWindowController;
 import javafx.application.Platform;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -29,9 +31,13 @@ public class Network {
     private static final String CHANGE_NICKNAME_OK_CMD_PREFIX = "/changeNickNameOK"; // + newNickName
     private static final String CHANGE_NICKNAME_ERR_CMD_PREFIX = "/changeNickNameErr"; // + error message
 
+    private static final String REGISTER_NEW_USER_CMD_PREFIX = "/registerNewUser"; // + login + nickname + password
+    private static final String REGISTER_NEW_USER_OK_CMD_PREFIX = "/registerNewUserOK"; //
+    private static final String REGISTER_NEW_USER_ERR_CMD_PREFIX = "/registerNewUserErr"; // + error message
 
-    private final String serverHost;
-    private final int serverPort;
+
+    private String serverHost;
+    private int serverPort;
     private Socket clientSocket;
     private DataInputStream in = null;
     private DataOutputStream out = null;
@@ -43,19 +49,33 @@ public class Network {
 
     private boolean isConnected = false;
 
+    private static final Logger LOGGER = LogManager.getLogger("clientLogs");
+
     public void setChatClientApp(ChatClientApp chatClientApp) {
         this.chatClientApp = chatClientApp;
     }
 
     public Network() {
-        serverHost = DEFAULT_SERVER_HOST;
-        serverPort = DEFAULT_SERVER_PORT;
+        setServerHost();
+        setServerPort();
     }
 
-    public Network(String serverHost, int serverPort) {
+    public void setServerHost(String serverHost) {
         this.serverHost = serverHost;
+    }
+
+    public void setServerHost() {
+        this.serverHost = DEFAULT_SERVER_HOST;
+    }
+
+    public void setServerPort(int serverPort) {
         this.serverPort = serverPort;
     }
+
+    public void setServerPort() {
+        this.serverPort = DEFAULT_SERVER_PORT;
+    }
+
 
     public void setMainChatWindowController(MainChatWindowController mainChatWindowController) {
         this.mainChatWindowController = mainChatWindowController;
@@ -69,24 +89,39 @@ public class Network {
         return userLogin;
     }
 
-    public void connection() {
+    public boolean connection() {
         try {
             clientSocket = new Socket(serverHost, serverPort);
             in = new DataInputStream(clientSocket.getInputStream());
             out = new DataOutputStream(clientSocket.getOutputStream());
             isConnected = true;
-            System.out.println("Соединение установлено");
+            LOGGER.info("Соединение установлено");
         } catch (IOException e) {
             isConnected = false;
+            LOGGER.warn("Отсутствует подключение");
+            LOGGER.warn(e.toString());
             e.printStackTrace();
 
-
-            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Повторить попытку подключения?")).showAndWait().get() == MyAlert.yesButton) {
-                connection();
-            } else {
+            if ((new YesNoAlert(Alert.AlertType.ERROR, "Невозможно установить соединение", "Невозможно установить соединение", "Повторить попытку подключения? \nПроверьте корректность указанного адреса и порта сервера", true)).showAndWait().get() != YesNoAlert.yesButton) {
                 System.exit(-1);
             }
         }
+        return isConnected;
+    }
+
+    public void closeConnection() {
+        isConnected = false;
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            LOGGER.error("Ошибка при закрытии clientSocket");
+            LOGGER.error(e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isConnected() {
+        return isConnected;
     }
 
     public void startReceiver() {
@@ -128,23 +163,25 @@ public class Network {
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
                     isConnected = false;
-                    System.out.println("Соединение прервано");
+                    LOGGER.warn("Соединение прервано");
+                    LOGGER.warn(e.toString());
+                    e.printStackTrace();
                     Platform.runLater(() -> {
                         try {
-                            if ((new MyAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Сеанс завершен. Повторить вход в чат? Будет запущен новый сеанс")).showAndWait().get() == MyAlert.yesButton) {
+                            if ((new YesNoAlert(Alert.AlertType.ERROR, "Отсутствует подключение", "Отсутствует подключение", "Сеанс завершен. Повторить вход в чат? Будет запущен новый сеанс", true)).showAndWait().get() == YesNoAlert.yesButton) {
                                 chatClientApp.restartChat();
                             } else {
                                 System.exit(-1);
                             }
                         } catch (IOException ioException) {
+                            LOGGER.error(ioException.toString());
                             ioException.printStackTrace();
                         }
                     });
                 }
             }
-            System.out.println("Receiver остановлен");
+            LOGGER.info("Receiver остановлен");
         });
         receiver.setDaemon(true);
         receiver.start();
@@ -182,5 +219,17 @@ public class Network {
         out.writeUTF(String.format("%s;%s", CHANGE_NICKNAME_CMD_PREFIX, newNickName));
     }
 
+    public String sendRegisterNewUserCommand(String newUserLogin, String newNickName, String md5Password) throws IOException {
+        LOGGER.info("Отправка на сервер команды регистрации нового пользователя");
+        out.writeUTF(String.format("%s;%s;%s;%s", REGISTER_NEW_USER_CMD_PREFIX, newUserLogin, newNickName, md5Password));
+        String response = in.readUTF();
+
+        if (response.startsWith(REGISTER_NEW_USER_OK_CMD_PREFIX)) {
+            return null;
+        } else {
+            return response.split(";", 2)[1];
+        }
+
+    }
 
 }
